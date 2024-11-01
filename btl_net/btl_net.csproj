@@ -46,6 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\Dbconnect.cs" />
+    <Compile Include="Model\chuyennganh_Model.cs" />
+    <Compile Include="Model\daudiem_Model.cs" />
+    <Compile Include="Model\diem_Model.cs" />
+    <Compile Include="Model\ghidanh_Model.cs" />
+    <Compile Include="Model\kyhoc_Model.cs" />
+    <Compile Include="Model\lophoc_Model.cs" />
+    <Compile Include="Model\monhoc_Model.cs" />
+    <Compile Include="Model\phanloaimonhoc_Model.cs" />
+    <Compile Include="Model\sinhvien_Model.cs" />
     <Compile Include="View\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,9 +86,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controller\" />
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
