@@ -26,47 +26,206 @@ namespace btl_net.View
         }
         private void Form2_Load(object sender, EventArgs e)
         {
+            load_data_cb_phanloai();
             TaiDuLieuMonHoc();
+            vohieuhoa(false);
+            reset();
         }
+        public void load_data_cb_phanloai()
+        {
+            cbLoaiMonHoc.DataSource = db.list_loaimonhoc();
+            cbLoaiMonHoc.DisplayMember = "loaimh";
+            cbLoaiMonHoc.ValueMember = "id_phanloai_monhoc";
+        }
+        public void reset()
+        {
+            txtTenMonHoc.Text = string.Empty;
+            txtSoTC.Text = string.Empty;
+            txtSoBuoiHoc.Text = string.Empty;
+            txtGioiHanNghi.Text = string.Empty;
 
+            load_data_cb_phanloai();
+            cbLoaiMonHoc.SelectedIndex = -1;
+
+        }
+        void vohieuhoa(bool gt)
+        {
+            txtTenMonHoc.Enabled = gt;
+            cbLoaiMonHoc.Enabled = gt;
+            txtSoBuoiHoc.Enabled = gt;
+            txtSoTC.Enabled = gt;
+            txtGioiHanNghi.Enabled = gt;
+        }
         private void btnThem_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtTenMonHoc.Text) ||
-                string.IsNullOrWhiteSpace(txtIDPhanLoai.Text) ||
-                string.IsNullOrWhiteSpace(txtSoTC.Text) ||
-                string.IsNullOrWhiteSpace(txtSoBuoiHoc.Text) ||
-                string.IsNullOrWhiteSpace(txtGioiHanNghi.Text))
+            if (btnThem.Text == "Thêm")
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin.");
-                return;
+                vohieuhoa(true);
+                reset();
+                btnThem.Text = "Lưu";
+                txtTenMonHoc.Focus();
             }
-
-            try
+            else
             {
-                string tenmonhoc = txtTenMonHoc.Text;
-                int id_phanloai_mh = int.Parse(txtIDPhanLoai.Text);
-                int sotc = int.Parse(txtSoTC.Text);
-                int tongsobh = int.Parse(txtSoBuoiHoc.Text);
-                int max_bh_chophep = int.Parse(txtGioiHanNghi.Text);
-
-                if (!db.kiemTraIdPhanLoaiMonHoc(id_phanloai_mh))
+                if (string.IsNullOrWhiteSpace(txtTenMonHoc.Text) ||
+                    string.IsNullOrWhiteSpace(txtSoTC.Text) ||
+                    string.IsNullOrWhiteSpace(txtSoBuoiHoc.Text) ||
+                    string.IsNullOrWhiteSpace(txtGioiHanNghi.Text)||
+                    string.IsNullOrWhiteSpace(cbLoaiMonHoc.Text))
                 {
-                    MessageBox.Show("ID Phân Loại Môn Học không tồn tại. Vui lòng kiểm tra lại.");
+                    MessageBox.Show("Vui lòng nhập đủ dữ liệu.");
+                    btnThem.Text = "Lưu";
+                }
+                else if (!int.TryParse(txtSoTC.Text, out int soTinChi))
+                {
+                    MessageBox.Show("Số tín chỉ phải là một số nguyên.");
+                    txtSoTC.Focus();
+                    btnThem.Text = "Lưu";
                     return;
                 }
-                monhoc_Model monhoc = new monhoc_Model(0, sotc, tongsobh, max_bh_chophep, id_phanloai_mh, tenmonhoc);
-                db.them_monhoc(monhoc);
-                TaiDuLieuMonHoc(); 
-                MessageBox.Show("Thêm môn học thành công.");
+                else if (!int.TryParse(txtSoBuoiHoc.Text, out int tongSoBuoiHoc))
+                {
+                    MessageBox.Show("Tổng số buổi học phải là một số nguyên.");
+                    txtSoBuoiHoc.Focus();
+                    btnThem.Text = "Lưu";
+                    return;
+                }
+                else if (!int.TryParse(txtGioiHanNghi.Text, out int gioiHanSoBuoiNghi))
+                {
+                    MessageBox.Show("Giới hạn số buổi nghỉ phải là một số nguyên.");
+                    txtGioiHanNghi.Focus();
+                    btnThem.Text = "Lưu";
+                    return;
+                }
+                else
+                {
+                    try
+                    {
+                        string tenMonHoc = txtTenMonHoc.Text;
+                        int idPhanLoaiMonHoc = Convert.ToInt32(cbLoaiMonHoc.SelectedValue); 
+
+                        monhoc_Model mh = new monhoc_Model(0, soTinChi, tongSoBuoiHoc, gioiHanSoBuoiNghi, idPhanLoaiMonHoc, tenMonHoc);
+                        db.them_monhoc(mh);
+                        MessageBox.Show("Thêm môn học thành công!");
+                        TaiDuLieuMonHoc();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Đã có lỗi xảy ra: " + ex.Message);
+                    }
+                    TaiDuLieuMonHoc();
+                    reset();
+                    vohieuhoa(false);
+                    btnThem.Text = "Thêm";
+                }
             }
-            catch (FormatException)
+        }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            if (txtTenMonHoc.Text != "")
             {
-                MessageBox.Show("Vui lòng nhập đúng định dạng dữ liệu cho Số tín chỉ, Tổng số buổi học và Giới hạn buổi nghỉ(Kiểu số).");
+                if (btnSua.Text == "Sửa")
+                {
+                    vohieuhoa(true);
+                    btnSua.Text = "Cập nhật";
+                }
+                else if (string.IsNullOrWhiteSpace(txtTenMonHoc.Text) ||
+                         string.IsNullOrWhiteSpace(txtSoTC.Text) ||
+                         string.IsNullOrWhiteSpace(txtSoBuoiHoc.Text) ||
+                         string.IsNullOrWhiteSpace(txtGioiHanNghi.Text) ||
+                         string.IsNullOrWhiteSpace(cbLoaiMonHoc.Text))
+
+                {
+                    MessageBox.Show("Vui lòng nhập đủ dữ liệu!");
+                    btnSua.Text = "Cập nhật";
+                }
+                else if (!int.TryParse(txtSoTC.Text, out int soTinChi))
+                {
+                    MessageBox.Show("Số tín chỉ phải là một số nguyên.");
+                    txtSoTC.Focus();
+                    btnSua.Text = "Cập nhật";
+                    return;
+                }
+                else if (!int.TryParse(txtSoBuoiHoc.Text, out int tongSoBuoiHoc))
+                {
+                    MessageBox.Show("Tổng số buổi học phải là một số nguyên.");
+                    txtSoBuoiHoc.Focus();
+                    btnSua.Text = "Cập nhật";
+                    return;
+                }
+                else if (!int.TryParse(txtGioiHanNghi.Text, out int gioiHanSoBuoiNghi))
+                {
+                    MessageBox.Show("Giới hạn số buổi nghỉ phải là một số nguyên.");
+                    txtGioiHanNghi.Focus();
+                    btnSua.Text = "Cập nhật";
+                    return;
+                }
+                else
+                {
+                    int idMonHoc = Convert.ToInt32(Luoi_MonHoc.SelectedRows[0].Cells["id_monhoc"].Value); 
+                    string tenMonHoc = txtTenMonHoc.Text;
+                    int idPhanLoaiMonHoc = Convert.ToInt32(cbLoaiMonHoc.SelectedValue);
+
+                    monhoc_Model mh = new monhoc_Model(idMonHoc, soTinChi, tongSoBuoiHoc, gioiHanSoBuoiNghi, idPhanLoaiMonHoc, tenMonHoc);
+
+                    db.sua_monhoc(mh);
+                    MessageBox.Show("Sửa môn học thành công!");
+                    TaiDuLieuMonHoc();
+                    reset();
+                    vohieuhoa(false);
+                    btnSua.Text = "Sửa";
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn người cần sửa!");
+            }               
+        }
+
+        private void Luoi_MonHoc_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            foreach (DataGridViewRow row in Luoi_MonHoc.SelectedRows)
+            {
+                txtTenMonHoc.Text = row.Cells["tenmonhoc"].Value.ToString();
+                cbLoaiMonHoc.Text = row.Cells["loaimh"].Value.ToString();
+                txtSoTC.Text = row.Cells["sotc"].Value.ToString();
+                txtSoBuoiHoc.Text = row.Cells["tongsobh"].Value.ToString();
+                txtGioiHanNghi.Text = row.Cells["max_bh_chophep"].Value.ToString();
+
+            }
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Luoi_MonHoc.SelectedRows.Count > 0)
+                {
+                    foreach (DataGridViewRow row in Luoi_MonHoc.SelectedRows)
+                    {
+                        int idMonHoc = Convert.ToInt32(row.Cells["id_monhoc"].Value); 
+
+                        db.xoa_monhoc(idMonHoc);
+                    }
+
+                    MessageBox.Show("Xóa môn học thành công!");
+                    TaiDuLieuMonHoc();
+                }
+                else
+                {
+                    MessageBox.Show("Vui lòng chọn môn học cần xóa.");
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Đã xảy ra lỗi: " + ex.Message);
+                MessageBox.Show("Đã có lỗi xảy ra: " + ex.Message);
             }
+        }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
