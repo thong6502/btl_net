@@ -11,9 +11,9 @@ namespace btl_net.Model
         private int id_sv, id_chuyennganh;
         private DateTime ngaysinh;
         private bool is_conhoc;
-        private string email, diachi, gioitinh, cccd, khoahoc, hoten, msv;
+        private string email, diachi, gioitinh, cccd, khoahoc, hoten, msv, sdt;
 
-        public sinhvien_Model(int id_sv, int id_chuyennganh, DateTime ngaysinh, bool is_conhoc, string email, string diachi, string gioitinh, string cccd, string khoahoc, string hoten, string msv)
+        public sinhvien_Model(int id_sv, int id_chuyennganh, DateTime ngaysinh,  string email, string diachi, string gioitinh, string cccd, string khoahoc, string hoten, string msv, string sdt, bool is_conhoc)
         {
             this.id_sv = id_sv;
             this.id_chuyennganh = id_chuyennganh;
@@ -26,6 +26,7 @@ namespace btl_net.Model
             this.khoahoc = khoahoc;
             this.hoten = hoten;
             this.msv = msv;
+            this.sdt = sdt;
         }
 
         public int Id_sv { get => id_sv; set => id_sv = value; }
@@ -39,5 +40,6 @@ namespace btl_net.Model
         public string Khoahoc { get => khoahoc; set => khoahoc = value; }
         public string Hoten { get => hoten; set => hoten = value; }
         public string Msv { get => msv; set => msv = value; }
+        public string Sdt { get => sdt; set => sdt = value; }
     }
 }
