@@ -17,7 +17,8 @@ namespace btl_net.Controller
         {
             string str = "Data Source=HDAT\\SQLEXPRESS;Initial Catalog=QuanLySinhVien;User ID=sa;Password=12348765;TrustServerCertificate=True";
             string str_thong = "Data Source=DESKTOP-EVH1REF;Initial Catalog=btn_net;Integrated Security=True;TrustServerCertificate=True";
-            conn = new SqlConnection(str);
+            string str_thinh = "Data Source=DESKTOP-6GBA1KF;Initial Catalog=QLDiem;Integrated Security=True;TrustServerCertificate=True";
+            conn = new SqlConnection(str_thinh);
             conn.Open();
         }
         public void close_csdl()
