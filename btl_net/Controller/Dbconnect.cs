@@ -337,7 +337,69 @@ namespace btl_net.Controller
                 close_csdl();
             }
         }
+        public DataTable list_loaimonhoc()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                open_csdl();
+                string sql = "select * from tbl_phanloai_monhoc";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+                close_csdl();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return dt;
+        }
+        public void sua_monhoc(monhoc_Model mh)
+        {
+            try
+            {
+                open_csdl();
+                string sql = "UPDATE tbl_monhoc SET tenmonhoc = @Tenmonhoc, sotc = @Sotc, tongsobh = @Tongsobh, max_bh_chophep = @Max_bh_chophep, id_phanloai_monhoc = @Id_phanloai_monhoc " +
+                             "WHERE id_monhoc = @Id_monhoc";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@Id_monhoc", mh.Id_monhoc);
+                cmd.Parameters.AddWithValue("@Tenmonhoc", mh.Tenmonhoc);
+                cmd.Parameters.AddWithValue("@Sotc", mh.Sotc);
+                cmd.Parameters.AddWithValue("@Tongsobh", mh.Tongsobh);
+                cmd.Parameters.AddWithValue("@Max_bh_chophep", mh.Max_bh_chophep);
+                cmd.Parameters.AddWithValue("@Id_phanloai_monhoc", mh.Id_phanloai_mh);
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Đã có lỗi xảy ra: " + ex.Message);
+            }
+            finally
+            {
+                close_csdl();
+            }
+        }
 
+        public void xoa_monhoc(int id_monhoc)
+        {
+            try
+            {
+                open_csdl();
+                string sql = "DELETE FROM tbl_monhoc WHERE id_monhoc = @Id_monhoc";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@Id_monhoc", id_monhoc);
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Đã có lỗi xảy ra: " + ex.Message);
+            }
+            finally
+            {
+                close_csdl();
+            }
+        }
         public bool kiemTraIdPhanLoaiMonHoc(int idPhanLoai)
         {
             bool exists = false;

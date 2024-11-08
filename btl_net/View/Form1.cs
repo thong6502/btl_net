@@ -109,8 +109,21 @@ namespace btl_net
                     MessageBox.Show("Số điện thoại không hợp lệ. Số điện thoại phải bắt đầu bằng '0' và có từ 10 đến 11 số.");
                     return;
                 }
+                if (!email.EndsWith("@gmail.com"))
+                {
+                    MessageBox.Show("Email phải kết thúc bằng '@gmail.com'.");
+                    return;
+                }
 
-                if(cb_nganh.SelectedIndex == -1)
+                // Kiểm tra tuổi (phải đủ 18 tuổi)
+                int currentYear = DateTime.Now.Year;
+                int birthYear = ngaysinh.Year;
+                if ((currentYear - birthYear) < 18)
+                {
+                    MessageBox.Show("Năm sinh không hợp lệ. Sinh viên phải đủ 18 tuổi.");
+                    return;
+                }
+                if (cb_nganh.SelectedIndex == -1)
                 {
                     chuyennganh_Model cn = new chuyennganh_Model(0, tenchuyennganh);
                     string success1 = db.them_chuyennganh(cn);
