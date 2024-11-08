@@ -21,55 +21,100 @@ namespace btl_net.View
         }
         private void TaiDuLieuDauDiem()
         {
-            DataTable dt = db.list_daudiem();
+            DataTable dt = db.TraDSDiem();
             Luoi_DauDiem.DataSource = dt;
         }
+        int i = 0;
         private void btnThem_Click(object sender, EventArgs e)
         {
-            try
+            if (cbIDMonHoc.SelectedValue == null || string.IsNullOrEmpty(txtTenDauDiem.Text) || string.IsNullOrEmpty(txtTyLe.Text))
             {
-                if (string.IsNullOrEmpty(txtIDMonHoc.Text) || string.IsNullOrEmpty(txtTenDauDiem.Text) || string.IsNullOrEmpty(txtTyLe.Text))
-                {
-                    MessageBox.Show("Vui lòng nhập đầy đủ thông tin.");
-                    return;
-                }
-
-                int id_monhoc = int.Parse(txtIDMonHoc.Text);
-                string tendaudiem = txtTenDauDiem.Text;
-                float tyle;
-
-                if (!float.TryParse(txtTyLe.Text, out tyle))
-                {
-                    MessageBox.Show("Vui lòng nhập đúng định dạng cho tỷ lệ.");
-                    return;
-                }
-
-                Dbconnect db = new Dbconnect();
-                if (!db.KiemTraTonTaiMonHoc(id_monhoc))
-                {
-                    MessageBox.Show("ID môn học không tồn tại.");
-                    return;
-                }
-
-                daudiem_Model daudiem = new daudiem_Model(0, id_monhoc, tendaudiem, tyle);
-
-                db.them_daudiem(daudiem);
-                TaiDuLieuDauDiem();
-                MessageBox.Show("Thêm đầu điểm thành công.");
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!");
+                return;
             }
-            catch (FormatException)
+
+
+            DataTable dt = (DataTable)Luoi_DauDiem.DataSource;
+            DataRow dr = dt.NewRow();
+
+            dr[0] = ++i;
+            dr[1] = cbIDMonHoc.SelectedValue.ToString();
+            dr[2] = txtTenDauDiem.Text;
+            dr[3] = txtTyLe.Text;  // Sử dụng biến số thực đã được kiểm tra
+
+            dt.Rows.Add(dr);
+
+            // Cập nhật DataTable vào DataGridView
+            Luoi_DauDiem.DataSource = dt;
+            Luoi_DauDiem.Refresh();
+        }
+
+        private void Luoi_DauDiem_SelectionChanged(object sender, EventArgs e)
+        {
+            if (Luoi_DauDiem.SelectedRows.Count > 0)
             {
-                MessageBox.Show("Vui lòng nhập đúng định dạng dữ liệu.");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Đã xảy ra lỗi: " + ex.Message);
+                DataGridViewRow selectedRow = Luoi_DauDiem.SelectedRows[0];
+
+                // Gán giá trị từ hàng đã chọn vào các TextBox
+                txtTenDauDiem.Text = selectedRow.Cells[2].Value.ToString();
+                txtTyLe.Text = selectedRow.Cells[3].Value.ToString();
+                cbIDMonHoc.SelectedValue = selectedRow.Cells[1].Value.ToString();
             }
         }
+
+
 
         private void Form3_Load(object sender, EventArgs e)
         {
             TaiDuLieuDauDiem();
+            cbIDMonHoc.DataSource = db.LayDLMon();
+            cbIDMonHoc.DisplayMember = "tenmonhoc";
+            cbIDMonHoc.ValueMember = "id_monhoc";
+            Luoi_DauDiem.SelectionChanged += Luoi_DauDiem_SelectionChanged;
+
         }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            this.Close();
+
+        }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            if (Luoi_DauDiem.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = Luoi_DauDiem.SelectedRows[0];
+
+                selectedRow.Cells[1].Value = cbIDMonHoc.SelectedValue.ToString();
+                selectedRow.Cells[2].Value = txtTenDauDiem.Text;
+                selectedRow.Cells[3].Value = txtTyLe.Text;
+
+                Luoi_DauDiem.Refresh();
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một hàng để sửa!");
+            }
+        }
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            if (Luoi_DauDiem.SelectedRows.Count > 0)
+            {
+                DataTable dt = (DataTable)Luoi_DauDiem.DataSource;
+                foreach (DataGridViewRow row in Luoi_DauDiem.SelectedRows)
+                {
+                    dt.Rows.RemoveAt(row.Index);
+                }
+
+                Luoi_DauDiem.DataSource = dt;
+                Luoi_DauDiem.Refresh();
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một hàng để xóa!");
+            }
+        }
+
     }
 }

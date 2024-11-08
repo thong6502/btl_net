@@ -513,6 +513,30 @@ namespace btl_net.Controller
             return exists;
         }
 
+        // ------------------------------Bang đầu điểm-----------------------------s
+        public DataTable TraDSDiem()
+        {
+            open_csdl();
+            string sql = "select * from tbl_daudiem";
+            SqlDataAdapter da = new SqlDataAdapter(sql,conn);
+            DataTable dt = new DataTable(); 
+            da.Fill(dt);
+            close_csdl();
+            return dt;
+        }
+        // lấy dữ liệu mã môn học
+        public DataTable LayDLMon()
+        {
+            open_csdl();
+            string sql = "select * from tbl_monhoc";
+            SqlDataAdapter da = new SqlDataAdapter(sql,conn);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            close_csdl();
+            return dt;
+        }
+        
+
         
     }
 }
