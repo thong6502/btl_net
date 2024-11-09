@@ -10,9 +10,9 @@ namespace btl_net.Model
     {
         private int id_daudiem, id_monhoc;
         private string tendaudiem;
-        private float tyle;
+        private decimal tyle;
 
-        public daudiem_Model(int id_daudiem, int id_monhoc, string tendaudiem, float tyle)
+        public daudiem_Model(int id_daudiem, int id_monhoc, string tendaudiem, decimal tyle)
         {
             this.id_daudiem = id_daudiem;
             this.id_monhoc = id_monhoc;
@@ -23,6 +23,6 @@ namespace btl_net.Model
         public int Id_daudiem { get => id_daudiem; set => id_daudiem = value; }
         public int Id_monhoc { get => id_monhoc; set => id_monhoc = value; }
         public string Tendaudiem { get => tendaudiem; set => tendaudiem = value; }
-        public float Tyle { get => tyle; set => tyle = value; }
+        public decimal Tyle { get => tyle; set => tyle = value; }
     }
 }

@@ -400,50 +400,17 @@ namespace btl_net.Controller
                 close_csdl();
             }
         }
-        public bool kiemTraIdPhanLoaiMonHoc(int idPhanLoai)
-        {
-            bool exists = false;
-            try
-            {
-                open_csdl();
-
-                string sql = "SELECT COUNT(*) FROM tbl_phanloai_monhoc WHERE id_phanloai_monhoc = @IdPhanLoai";
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@IdPhanLoai", idPhanLoai);
-
-                int count = (int)cmd.ExecuteScalar();
-                exists = (count > 0);
-
-                close_csdl();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Lỗi khi kiểm tra id_phanloai_monhoc: " + ex.Message);
-            }
-            finally
-            {
-                close_csdl();
-            }
-
-            return exists;
-        }
-        public DataTable list_daudiem()
+        public DataTable search_daudiem_by_id_monhoc(int id_monhoc)
         {
             DataTable dt = new DataTable();
             try
             {
                 open_csdl();
-
-                // Lấy dữ liệu từ tbl_daudiem và tbl_monhoc
-                string sql = @"
-            SELECT d.id_daudiem, d.id_monhoc, m.tenmonhoc AS TenMonHoc, d.tendaudiem, d.tyle
-            FROM tbl_daudiem d
-            INNER JOIN tbl_monhoc m ON d.id_monhoc = m.id_monhoc";
-
+                string sql = "select * from tbl_daudiem where id_monhoc = @id_monhoc";
                 SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@id_monhoc", id_monhoc);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
-
                 close_csdl();
             }
             catch (SqlException ex)
@@ -456,9 +423,9 @@ namespace btl_net.Controller
                 Console.Error.WriteLine("Đã xảy ra lỗi: " + ex.Message);
                 throw;
             }
-
             return dt;
         }
+
 
         public void them_daudiem(daudiem_Model daudiem)
         {
@@ -475,6 +442,72 @@ namespace btl_net.Controller
 
                 // Thực thi câu lệnh
                 cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Lỗi SQL: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Đã xảy ra lỗi: " + ex.Message);
+            }
+            finally
+            {
+                close_csdl();
+            }
+        }
+        public void sua_daudiem(daudiem_Model daudiem)
+        {
+            try
+            {
+                open_csdl();
+                string sql = "UPDATE tbl_daudiem SET id_monhoc = @Id_monhoc, tendaudiem = @Tendaudiem, tyle = @Tyle WHERE id_daudiem = @Id_daudiem";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                cmd.Parameters.AddWithValue("@Id_monhoc", daudiem.Id_monhoc);
+                cmd.Parameters.AddWithValue("@Tendaudiem", daudiem.Tendaudiem);
+                cmd.Parameters.AddWithValue("@Tyle", daudiem.Tyle);
+                cmd.Parameters.AddWithValue("@Id_daudiem", daudiem.Id_daudiem); 
+
+
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected == 0)
+                {
+                    MessageBox.Show("Không tìm thấy đầu điểm để sửa.");
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Lỗi SQL: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Đã xảy ra lỗi: " + ex.Message);
+            }
+            finally
+            {
+                close_csdl();
+            }
+        }
+
+        public void xoa_daudiem(int id_daudiem)
+        {
+            try
+            {
+                open_csdl();
+                string sql = "DELETE FROM tbl_daudiem WHERE id_daudiem = @Id_daudiem";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                cmd.Parameters.AddWithValue("@Id_daudiem", id_daudiem);
+
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected == 0)
+                {
+                    MessageBox.Show("Không tìm thấy đầu điểm để xóa.");
+                }
+
             }
             catch (SqlException ex)
             {

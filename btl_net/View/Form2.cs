@@ -202,15 +202,19 @@ namespace btl_net.View
             {
                 if (Luoi_MonHoc.SelectedRows.Count > 0)
                 {
-                    foreach (DataGridViewRow row in Luoi_MonHoc.SelectedRows)
+                    // Hỏi người dùng xác nhận trước khi xóa
+                    if (MessageBox.Show("Bạn có chắc chắn muốn xóa môn học đã chọn?", "Xác nhận xóa", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        int idMonHoc = Convert.ToInt32(row.Cells["id_monhoc"].Value); 
+                        foreach (DataGridViewRow row in Luoi_MonHoc.SelectedRows)
+                        {
+                            int idMonHoc = Convert.ToInt32(row.Cells["id_monhoc"].Value);
 
-                        db.xoa_monhoc(idMonHoc);
+                            db.xoa_monhoc(idMonHoc);
+                        }
+
+                        MessageBox.Show("Xóa môn học thành công!");
+                        TaiDuLieuMonHoc();
                     }
-
-                    MessageBox.Show("Xóa môn học thành công!");
-                    TaiDuLieuMonHoc();
                 }
                 else
                 {
@@ -226,6 +230,11 @@ namespace btl_net.View
         private void btnThoat_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
