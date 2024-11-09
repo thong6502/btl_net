@@ -64,6 +64,10 @@ namespace btl_net.View
                 reset();
                 btnThem.Text = "Lưu";
                 txtTenMonHoc.Focus();
+
+                btnSua.Enabled = false;
+                btnTimKiem.Enabled = false;
+                btnXoa.Enabled = false;
             }
             else
             {
@@ -117,6 +121,9 @@ namespace btl_net.View
                     reset();
                     vohieuhoa(false);
                     btnThem.Text = "Thêm";
+                    btnSua.Enabled = true;
+                    btnTimKiem.Enabled = true;
+                    btnXoa.Enabled = true;
                 }
             }
         }
@@ -129,6 +136,10 @@ namespace btl_net.View
                 {
                     vohieuhoa(true);
                     btnSua.Text = "Cập nhật";
+
+                    btnThem.Enabled = false;
+                    btnTimKiem.Enabled = false;
+                    btnXoa.Enabled = false;
                 }
                 else if (string.IsNullOrWhiteSpace(txtTenMonHoc.Text) ||
                          string.IsNullOrWhiteSpace(txtSoTC.Text) ||
@@ -175,6 +186,9 @@ namespace btl_net.View
                     reset();
                     vohieuhoa(false);
                     btnSua.Text = "Sửa";
+                    btnThem.Enabled = true;
+                    btnTimKiem.Enabled = true;
+                    btnXoa.Enabled = true;
                 }
             }
             else

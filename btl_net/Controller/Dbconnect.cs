@@ -18,7 +18,7 @@ namespace btl_net.Controller
             string str = "Data Source=HDAT\\SQLEXPRESS;Initial Catalog=QuanLySinhVien;User ID=sa;Password=12348765;TrustServerCertificate=True";
             string str_thong = "Data Source=DESKTOP-EVH1REF;Initial Catalog=btn_net;Integrated Security=True;TrustServerCertificate=True";
             string str_thinh = "Data Source=DESKTOP-6GBA1KF;Initial Catalog=QLDiem;Integrated Security=True;TrustServerCertificate=True";
-            conn = new SqlConnection(str_thong);
+            conn = new SqlConnection(str);
             conn.Open();
         }
         public void close_csdl()
@@ -204,6 +204,76 @@ namespace btl_net.Controller
                 throw;
             }
             return dt;
+        }
+        public DataTable list_chuyennganhvaslsv()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                open_csdl();
+                string sql = @"
+                SELECT c.id_chuyennganh, c.tenchuyennganh, 
+                       COUNT(s.id_sv) AS SoLuongSinhVien
+                FROM tbl_chuyennganh c
+                LEFT JOIN tbl_sinhvien s ON c.id_chuyennganh = s.id_chuyennganh AND s.is_conhoc = 1
+                WHERE c.is_xoa = 1
+                GROUP BY c.id_chuyennganh, c.tenchuyennganh";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi truy vấn cơ sở dữ liệu: " + ex.Message);
+            }
+            finally
+            {
+                close_csdl();
+            }
+            return dt;
+        }
+
+        // Sửa chuyên ngành
+        public void sua_chuyennganh(chuyennganh_Model chuyennganh)
+        {
+            try
+            {
+                open_csdl();
+                string sql = "UPDATE tbl_chuyennganh SET tenchuyennganh = @TenChuyenNganh WHERE id_chuyennganh = @IdChuyenNganh";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@TenChuyenNganh", chuyennganh.Tenchuyennganh);
+                cmd.Parameters.AddWithValue("@IdChuyenNganh", chuyennganh.Id_chuyennganh);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi sửa chuyên ngành: " + ex.Message);
+            }
+            finally
+            {
+                close_csdl();
+            }
+        }
+
+        // Xóa mềm chuyên ngành
+        public void xoa_chuyennganh(int id_chuyennganh)
+        {
+            try
+            {
+                open_csdl();
+                string sql = "UPDATE tbl_chuyennganh SET is_xoa = 0 WHERE id_chuyennganh = @IdChuyenNganh";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@IdChuyenNganh", id_chuyennganh);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi xóa chuyên ngành: " + ex.Message);
+            }
+            finally
+            {
+                close_csdl();
+            }
         }
         public string them_chuyennganh(chuyennganh_Model cn)
         {
