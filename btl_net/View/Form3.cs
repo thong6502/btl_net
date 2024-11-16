@@ -95,6 +95,7 @@ namespace btl_net.View
 
         private void Form3_Load(object sender, EventArgs e)
         {
+            //this.StartPosition = FormStartPosition.CenterParent;
             cbIDMonHoc.DataSource = db.LayDLMon();
             cbIDMonHoc.DisplayMember = "tenmonhoc";
             cbIDMonHoc.ValueMember = "id_monhoc";
