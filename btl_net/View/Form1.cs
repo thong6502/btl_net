@@ -125,7 +125,7 @@ namespace btl_net
                 }
                 if (cb_nganh.SelectedIndex == -1)
                 {
-                    chuyennganh_Model cn = new chuyennganh_Model(0, tenchuyennganh);
+                    chuyennganh_Model cn = new chuyennganh_Model(0, tenchuyennganh,true);
                     string success1 = db.them_chuyennganh(cn);
                     if (!success1.Equals("success"))
                     {
