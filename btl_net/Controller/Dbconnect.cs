@@ -215,7 +215,7 @@ namespace btl_net.Controller
                 SELECT c.id_chuyennganh, c.tenchuyennganh, 
                         COUNT(s.id_sv) AS SoLuongSinhVien
                 FROM tbl_chuyennganh c
-                LEFT JOIN tbl_sinhvien s ON s.id_chuyennganh = c.id_chuyennganh AND s.is_conhoc = 1
+                LEFT JOIN tbl_sinhvien s ON s.id_chuyennganh = c.id_chuyennganh 
                 WHERE c.is_xoa = @IsXoa
                 GROUP BY c.id_chuyennganh, c.tenchuyennganh";
                 SqlCommand cmd = new SqlCommand(sql, conn);
