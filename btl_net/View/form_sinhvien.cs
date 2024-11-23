@@ -214,6 +214,7 @@ namespace btl_net
                         string success = db.xoa_sinhvien(id_sv);
 
                         if (!success.Equals("success"))
+
                         {
                             MessageBox.Show($"Lỗi khi xóa sinh viên có mã sinh viên {id_sv}: {success}");
                         }
@@ -261,6 +262,11 @@ namespace btl_net
         private void btnThoat_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void form_sinhvien_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

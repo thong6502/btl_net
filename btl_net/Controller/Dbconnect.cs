@@ -17,8 +17,8 @@ namespace btl_net.Controller
         {
             string str = "Data Source=HDAT\\SQLEXPRESS;Initial Catalog=QuanLySinhVien;User ID=sa;Password=12348765;TrustServerCertificate=True";
             string str_thong = "Data Source=DESKTOP-EVH1REF;Initial Catalog=btn_net;Integrated Security=True;TrustServerCertificate=True";
-            string str_thinh = "Data Source=DESKTOP-6GBA1KF;Initial Catalog=btn_net;Integrated Security=True;TrustServerCertificate=True";
-            conn = new SqlConnection(str_thong);
+            string str_thinh = "Data Source=DESKTOP-6GBA1KF\\SQLEXPRESS;Initial Catalog=btn_net;Integrated Security=True;TrustServerCertificate=True";
+            conn = new SqlConnection(str_thinh);
             conn.Open();
         }
         public void close_csdl()
@@ -205,7 +205,7 @@ namespace btl_net.Controller
             }
             return dt;
         }
-        public DataTable list_chuyennganhvaslsv()
+        public DataTable list_chuyennganhvaslsv(bool is_xoa)
         {
             DataTable dt = new DataTable();
             try
@@ -213,12 +213,13 @@ namespace btl_net.Controller
                 open_csdl();
                 string sql = @"
                 SELECT c.id_chuyennganh, c.tenchuyennganh, 
-                       COUNT(s.id_sv) AS SoLuongSinhVien
+                        COUNT(s.id_sv) AS SoLuongSinhVien
                 FROM tbl_chuyennganh c
-                LEFT JOIN tbl_sinhvien s ON c.id_chuyennganh = s.id_chuyennganh AND s.is_conhoc = 1
-                WHERE c.is_xoa = 1
+                LEFT JOIN tbl_sinhvien s ON s.id_chuyennganh = c.id_chuyennganh 
+                WHERE c.is_xoa = @IsXoa
                 GROUP BY c.id_chuyennganh, c.tenchuyennganh";
                 SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@IsXoa", is_xoa);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
             }
@@ -296,6 +297,25 @@ namespace btl_net.Controller
             {
                 return "Đã xảy ra lỗi tbl_chuyennganh: " + ex.Message;
                 throw;
+            }
+        }
+        public void khoi_phuc_chuyenganh(int id_chuyennganh)
+        {
+            try
+            {
+                open_csdl();
+                string sql = "UPDATE tbl_chuyennganh SET is_xoa = 1 WHERE id_chuyennganh = @IdChuyenNganh";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@IdChuyenNganh", id_chuyennganh);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi khôi phục chuyên ngành: " + ex.Message);
+            }
+            finally
+            {
+                close_csdl();
             }
         }
         public int get_id_chuyenganh_by_name(string tenchuyennganh)
@@ -407,24 +427,7 @@ namespace btl_net.Controller
                 close_csdl();
             }
         }
-        public DataTable list_loaimonhoc()
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                open_csdl();
-                string sql = "select * from tbl_phanloai_monhoc";
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
-                close_csdl();
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-            return dt;
-        }
+
         public void sua_monhoc(monhoc_Model mh)
         {
             try
@@ -638,18 +641,38 @@ namespace btl_net.Controller
             close_csdl();
             return dt;
         }
-        //Xử lý hàm phân loại môn học ------------
+        //------------------------------ PHÂN LOẠI MÔN HỌC
+
+        public DataTable list_loaimonhoc()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+
+                open_csdl();
+                string sql = "SELECT id_phanloai_monhoc, loaimh, is_xoa FROM tbl_phanloai_monhoc";
+                SqlDataAdapter da = new SqlDataAdapter( sql, conn);
+                
+                da.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine("Lỗi SQL: " + ex.Message);
+               
+            }
+            return dt;
+        }
 
         public void ThemPhanLoaiMonHoc(phanloaimonhoc_Model phanLoai)
         {
             try
             {
                 open_csdl(); // Mở kết nối đến cơ sở dữ liệu
-                string sql = "INSERT INTO tbl_phanloai_monhoc (id_phanloai_monhoc, loaimh) VALUES (@idPhanLoai, @loaiMH)";
+                string sql = "INSERT INTO tbl_phanloai_monhoc (loaimh) VALUES (@loaiMH)";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@idPhanLoai", phanLoai.Id_phanloai_mh);
+                    //cmd.Parameters.AddWithValue("@idPhanLoai", phanLoai.Id_phanloai_mh);
                     cmd.Parameters.AddWithValue("@loaiMH", phanLoai.Loaimh);
 
                     cmd.ExecuteNonQuery(); // Thực thi câu lệnh SQL
@@ -702,30 +725,6 @@ namespace btl_net.Controller
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@idPhanLoai", idPhanLoai);
-                    cmd.Parameters.AddWithValue("@isXoa", 0); // Giả sử rằng true nghĩa là đã xóa
-
-                    cmd.ExecuteNonQuery(); // Thực thi câu lệnh SQL
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi xóa phân loại môn học: " + ex.Message, "Thông báo");
-            }
-            finally
-            {
-                close_csdl(); // Đóng kết nối cơ sở dữ liệu
-            }
-        }
-        public void KhoiPhucPhanLoaiMonHoc(int idPhanLoai)
-        {
-            try
-            {
-                open_csdl(); // Mở kết nối đến cơ sở dữ liệu
-                string sql = "UPDATE tbl_phanloai_monhoc SET is_xoa = @isXoa WHERE id_phanloai_monhoc = @idPhanLoai";
-
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
-                {
-                    cmd.Parameters.AddWithValue("@idPhanLoai", idPhanLoai);
                     cmd.Parameters.AddWithValue("@isXoa", 1); // Giả sử rằng true nghĩa là đã xóa
 
                     cmd.ExecuteNonQuery(); // Thực thi câu lệnh SQL
@@ -740,35 +739,173 @@ namespace btl_net.Controller
                 close_csdl(); // Đóng kết nối cơ sở dữ liệu
             }
         }
-        public DataTable list_phanloaimonhoc()
+        // khôi phục lại cái giá trị ban đầu xóa
+        public void KhoiPhucPhanLoaiMonHoc(int idPhanLoai)
+        {
+            try
+            {
+                open_csdl(); // Mở kết nối đến cơ sở dữ liệu
+                string sql = "UPDATE tbl_phanloai_monhoc SET is_xoa = 0 WHERE id_phanloai_monhoc = @idPhanLoai";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@idPhanLoai", idPhanLoai);
+
+                    cmd.ExecuteNonQuery(); // Thực thi câu lệnh SQL
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi xóa phân loại môn học: " + ex.Message, "Thông báo");
+            }
+            finally
+            {
+                close_csdl(); // Đóng kết nối cơ sở dữ liệu
+            }
+        }
+        //public DataTable list_phanloaimonhoc()
+        //{
+        //    DataTable dt = new DataTable();
+        //    try
+        //    {
+        //        open_csdl();
+
+        //        string sql = @"SELECT id_phanloai_monhoc, loaimh, is_xoa FROM tbl_phanloai_monhoc";
+
+        //        SqlCommand cmd = new SqlCommand(sql, conn);
+        //        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        //        da.Fill(dt);
+
+        //        close_csdl();
+        //    }
+        //    catch (SqlException ex)
+        //    {
+        //        Console.Error.WriteLine("Lỗi SQL: " + ex.Message);
+        //        throw;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.Error.WriteLine("Đã xảy ra lỗi: " + ex.Message);
+        //        throw;
+        //    }
+
+        //    return dt;
+        //}
+
+        //Kỳ học*************************************
+        public DataTable list_kyhoc(bool is_xoa)
         {
             DataTable dt = new DataTable();
             try
             {
                 open_csdl();
-
-                string sql = @"SELECT id_phanloai_monhoc, loaimh, is_xoa FROM tbl_phanloai_monhoc";
-
+                string sql = @"
+                SELECT k.id_kyhoc, k.kyhoc, 
+                       COUNT(l.id_lophoc) AS SoLuongLopHoc
+                FROM tbl_kyhoc k
+                LEFT JOIN tbl_lophoc l ON k.id_kyhoc = l.id_kyhoc
+                WHERE k.is_xoa = @IsXoa
+                GROUP BY k.id_kyhoc, k.kyhoc";
                 SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@IsXoa", is_xoa);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
-
-                close_csdl();
-            }
-            catch (SqlException ex)
-            {
-                Console.Error.WriteLine("Lỗi SQL: " + ex.Message);
-                throw;
             }
             catch (Exception ex)
             {
-                Console.Error.WriteLine("Đã xảy ra lỗi: " + ex.Message);
-                throw;
+                MessageBox.Show("Lỗi khi truy vấn cơ sở dữ liệu: " + ex.Message);
             }
-
+            finally
+            {
+                close_csdl();
+            }
             return dt;
         }
 
+        // Thêm học kỳ
+        public void them_kyhoc(kyhoc_Model kyhoc)
+        {
+            try
+            {
+                open_csdl();
+                string sql = "INSERT INTO tbl_kyhoc (kyhoc) VALUES (@Kyhoc)";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@Kyhoc", kyhoc.Kyhoc);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi thêm học kỳ: " + ex.Message);
+            }
+            finally
+            {
+                close_csdl();
+            }
+        }
+
+        // Sửa học kỳ
+        public void sua_kyhoc(kyhoc_Model kyhoc)
+        {
+            try
+            {
+                open_csdl();
+                string sql = "UPDATE tbl_kyhoc SET kyhoc = @Kyhoc WHERE id_kyhoc = @IdKyhoc";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@Kyhoc", kyhoc.Kyhoc);
+                cmd.Parameters.AddWithValue("@IdKyhoc", kyhoc.Id_kyhoc);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi sửa học kỳ: " + ex.Message);
+            }
+            finally
+            {
+                close_csdl();
+            }
+        }
+
+        // Xóa mềm học kỳ
+        public void xoa_kyhoc(int id_kyhoc)
+        {
+            try
+            {
+                open_csdl();
+                string sql = "UPDATE tbl_kyhoc SET is_xoa = 0 WHERE id_kyhoc = @IdKyhoc";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@IdKyhoc", id_kyhoc);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi xóa học kỳ: " + ex.Message);
+            }
+            finally
+            {
+                close_csdl();
+            }
+        }
+
+        // Khôi phục học kỳ
+        public void khoi_phuc_kyhoc(int id_kyhoc)
+        {
+            try
+            {
+                open_csdl();
+                string sql = "UPDATE tbl_kyhoc SET is_xoa = 1 WHERE id_kyhoc = @IdKyhoc";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@IdKyhoc", id_kyhoc);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi khôi phục học kỳ: " + ex.Message);
+            }
+            finally
+            {
+                close_csdl();
+            }
+        }
 
 
 
