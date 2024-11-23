@@ -95,6 +95,7 @@ namespace btl_net.View
 
         private void Form3_Load(object sender, EventArgs e)
         {
+            //this.StartPosition = FormStartPosition.CenterParent;
             cbIDMonHoc.DataSource = db.LayDLMon();
             cbIDMonHoc.DisplayMember = "tenmonhoc";
             cbIDMonHoc.ValueMember = "id_monhoc";
@@ -204,7 +205,7 @@ namespace btl_net.View
                     //sua
                     if (arr_sua.Contains(id_daudiem))
                     {
-                        daudiem_Model daudiem = new daudiem_Model(id_daudiem, id_monhoc, tendaudiem, tyle);
+                        daudiem_Model daudiem = new daudiem_Model(id_daudiem, id_monhoc, tendaudiem, tyle, false);
                         db.sua_daudiem(daudiem);
                     }
                    
@@ -212,7 +213,7 @@ namespace btl_net.View
                 else
                 {
                     //them
-                    daudiem_Model daudiem = new daudiem_Model(0, id_monhoc, tendaudiem, tyle);
+                    daudiem_Model daudiem = new daudiem_Model(0, id_monhoc, tendaudiem, tyle, false);
                     db.them_daudiem(daudiem);
 
                 }

@@ -10,8 +10,9 @@ namespace btl_net.Model
     {
         private int id_monhoc, sotc, tongsobh, max_bh_chophep, id_phanloai_mh;
         private string tenmonhoc;
+        private bool is_xoa;
 
-        public monhoc_Model(int id_monhoc, int sotc, int tongsobh, int max_bh_chophep, int id_phanloai_mh, string tenmonhoc)
+        public monhoc_Model(int id_monhoc, int sotc, int tongsobh, int max_bh_chophep, int id_phanloai_mh, string tenmonhoc, bool is_xoa)
         {
             this.id_monhoc = id_monhoc;
             this.sotc = sotc;
@@ -19,6 +20,7 @@ namespace btl_net.Model
             this.max_bh_chophep = max_bh_chophep;
             this.id_phanloai_mh = id_phanloai_mh;
             this.tenmonhoc = tenmonhoc;
+            this.is_xoa = is_xoa;
         }
 
         public int Id_monhoc { get => id_monhoc; set => id_monhoc = value; }
@@ -27,5 +29,6 @@ namespace btl_net.Model
         public int Max_bh_chophep { get => max_bh_chophep; set => max_bh_chophep = value; }
         public int Id_phanloai_mh { get => id_phanloai_mh; set => id_phanloai_mh = value; }
         public string Tenmonhoc { get => tenmonhoc; set => tenmonhoc = value; }
+        public bool Is_xoa { get => is_xoa; set => is_xoa = value; }
     }
 }
