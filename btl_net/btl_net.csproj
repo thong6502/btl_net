@@ -100,6 +100,12 @@
     <Compile Include="View\Formchinh.Designer.cs">
       <DependentUpon>Formchinh.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\FormHocKy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormHocKy.Designer.cs">
+      <DependentUpon>FormHocKy.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\FormQLMH.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +153,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Formchinh.resx">
       <DependentUpon>Formchinh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FormHocKy.resx">
+      <DependentUpon>FormHocKy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormQLMH.resx">
       <DependentUpon>FormQLMH.cs</DependentUpon>
