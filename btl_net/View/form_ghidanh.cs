@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace btl_net.View
 {
-    public partial class form_chuyennganh : Form
+    public partial class form_ghidanh : Form
     {
-        public form_chuyennganh()
+        public form_ghidanh()
         {
             InitializeComponent();
-        }
-
-        private void Form_ChuyenNganh_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

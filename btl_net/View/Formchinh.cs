@@ -22,7 +22,7 @@ namespace btl_net.View
 
         private void sinhViênToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Form1());
+            OpenChildForm(new form_sinhvien());
         }
 
         private void mônHọcToolStripMenuItem_Click(object sender, EventArgs e)

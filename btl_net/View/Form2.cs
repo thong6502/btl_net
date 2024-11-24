@@ -108,7 +108,7 @@ namespace btl_net.View
                         string tenMonHoc = txtTenMonHoc.Text;
                         int idPhanLoaiMonHoc = Convert.ToInt32(cbLoaiMonHoc.SelectedValue); 
 
-                        monhoc_Model mh = new monhoc_Model(0, soTinChi, tongSoBuoiHoc, gioiHanSoBuoiNghi, idPhanLoaiMonHoc, tenMonHoc);
+                        monhoc_Model mh = new monhoc_Model(0, soTinChi, tongSoBuoiHoc, gioiHanSoBuoiNghi, idPhanLoaiMonHoc, tenMonHoc, false);
                         db.them_monhoc(mh);
                         MessageBox.Show("Thêm môn học thành công!");
                         TaiDuLieuMonHoc();
@@ -178,7 +178,7 @@ namespace btl_net.View
                     string tenMonHoc = txtTenMonHoc.Text;
                     int idPhanLoaiMonHoc = Convert.ToInt32(cbLoaiMonHoc.SelectedValue);
 
-                    monhoc_Model mh = new monhoc_Model(idMonHoc, soTinChi, tongSoBuoiHoc, gioiHanSoBuoiNghi, idPhanLoaiMonHoc, tenMonHoc);
+                    monhoc_Model mh = new monhoc_Model(idMonHoc, soTinChi, tongSoBuoiHoc, gioiHanSoBuoiNghi, idPhanLoaiMonHoc, tenMonHoc, false);
 
                     db.sua_monhoc(mh);
                     MessageBox.Show("Sửa môn học thành công!");

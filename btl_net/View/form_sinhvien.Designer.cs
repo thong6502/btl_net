@@ -1,6 +1,6 @@
 ﻿namespace btl_net
 {
-    partial class Form1
+    partial class form_sinhvien
     {
         /// <summary>
         /// Required designer variable.
@@ -561,7 +561,7 @@
             this.khoahoc.Name = "khoahoc";
             this.khoahoc.ReadOnly = true;
             // 
-            // Form1
+            // form_quanlysinhvien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -570,7 +570,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "Form1";
+            this.Name = "form_quanlysinhvien";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý sinh viên";
             this.groupBox1.ResumeLayout(false);

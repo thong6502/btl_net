@@ -205,7 +205,7 @@ namespace btl_net.View
                     //sua
                     if (arr_sua.Contains(id_daudiem))
                     {
-                        daudiem_Model daudiem = new daudiem_Model(id_daudiem, id_monhoc, tendaudiem, tyle);
+                        daudiem_Model daudiem = new daudiem_Model(id_daudiem, id_monhoc, tendaudiem, tyle, false);
                         db.sua_daudiem(daudiem);
                     }
                    
@@ -213,7 +213,7 @@ namespace btl_net.View
                 else
                 {
                     //them
-                    daudiem_Model daudiem = new daudiem_Model(0, id_monhoc, tendaudiem, tyle);
+                    daudiem_Model daudiem = new daudiem_Model(0, id_monhoc, tendaudiem, tyle, false);
                     db.them_daudiem(daudiem);
 
                 }

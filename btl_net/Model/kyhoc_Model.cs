@@ -11,6 +11,7 @@ namespace btl_net.Model
         private int id_kyhoc;
         private string kyhoc;
         private bool is_xoa;
+
         public kyhoc_Model(int id_kyhoc, string kyhoc, bool is_xoa)
         {
             this.id_kyhoc = id_kyhoc;

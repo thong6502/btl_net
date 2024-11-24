@@ -1,6 +1,6 @@
 ﻿namespace btl_net.View
 {
-    partial class Form_ChuyenNganh
+    partial class form_chuyennganh
     {
         /// <summary>
         /// Required designer variable.

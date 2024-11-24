@@ -15,12 +15,12 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace btl_net
 {
-    public partial class Form1 : Form
+    public partial class form_sinhvien : Form
     {
         Dbconnect db = new Dbconnect();
         int local_is_conhoc = 1;
 
-        public Form1()
+        public form_sinhvien()
         {
             InitializeComponent();
             reset();
@@ -60,7 +60,10 @@ namespace btl_net
         }
         public void load_data_cb_nganh()
         {
-            cb_nganh.DataSource = db.list_chuyennganh();
+            DataTable dt = db.list_chuyennganh();
+            DataView dv = new DataView(dt);
+            dv.RowFilter = "is_xoa = 0"; // Lọc dữ liệu
+            cb_nganh.DataSource = dv;
             cb_nganh.DisplayMember = "tenchuyennganh";
         }
         public void TaiDuLieuSinhVien()
@@ -125,7 +128,7 @@ namespace btl_net
                 }
                 if (cb_nganh.SelectedIndex == -1)
                 {
-                    chuyennganh_Model cn = new chuyennganh_Model(0, tenchuyennganh,true);
+                    chuyennganh_Model cn = new chuyennganh_Model(0, tenchuyennganh, false);
                     string success1 = db.them_chuyennganh(cn);
                     if (!success1.Equals("success"))
                     {
