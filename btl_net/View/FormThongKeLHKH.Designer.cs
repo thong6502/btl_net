@@ -30,8 +30,8 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.txtTenHocKy = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.lblTongSoLop = new System.Windows.Forms.GroupBox();
             this.LUOI_LHHK = new System.Windows.Forms.DataGridView();
             this.id_kyhoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,7 +48,7 @@
             this.label1.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(354, 44);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(605, 36);
+            this.label1.Size = new System.Drawing.Size(422, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "THỐNG KÊ SỐ LỚP HỌC CỦA KỲ HỌC";
             // 
@@ -64,22 +64,23 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin học kỳ";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(322, 123);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(90, 20);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Tên học kỳ";
-            // 
             // txtTenHocKy
             // 
+            this.txtTenHocKy.Enabled = false;
             this.txtTenHocKy.Location = new System.Drawing.Point(446, 110);
             this.txtTenHocKy.Multiline = true;
             this.txtTenHocKy.Name = "txtTenHocKy";
             this.txtTenHocKy.Size = new System.Drawing.Size(406, 45);
             this.txtTenHocKy.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(322, 123);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(61, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Tên học kỳ";
             // 
             // lblTongSoLop
             // 
@@ -93,6 +94,8 @@
             // 
             // LUOI_LHHK
             // 
+            this.LUOI_LHHK.AllowUserToAddRows = false;
+            this.LUOI_LHHK.AllowUserToDeleteRows = false;
             this.LUOI_LHHK.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.LUOI_LHHK.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.LUOI_LHHK.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -101,6 +104,7 @@
             this.tenlop});
             this.LUOI_LHHK.Location = new System.Drawing.Point(17, 25);
             this.LUOI_LHHK.Name = "LUOI_LHHK";
+            this.LUOI_LHHK.ReadOnly = true;
             this.LUOI_LHHK.RowHeadersWidth = 62;
             this.LUOI_LHHK.RowTemplate.Height = 28;
             this.LUOI_LHHK.Size = new System.Drawing.Size(1265, 339);
