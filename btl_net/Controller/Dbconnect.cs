@@ -262,7 +262,7 @@ namespace btl_net.Controller
             try
             {
                 open_csdl();
-                string sql = "UPDATE tbl_chuyennganh SET is_xoa = 0 WHERE id_chuyennganh = @IdChuyenNganh";
+                string sql = "UPDATE tbl_chuyennganh SET is_xoa = 1 WHERE id_chuyennganh = @IdChuyenNganh";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@IdChuyenNganh", id_chuyennganh);
                 cmd.ExecuteNonQuery();
@@ -304,7 +304,7 @@ namespace btl_net.Controller
             try
             {
                 open_csdl();
-                string sql = "UPDATE tbl_chuyennganh SET is_xoa = 1 WHERE id_chuyennganh = @IdChuyenNganh";
+                string sql = "UPDATE tbl_chuyennganh SET is_xoa = 0 WHERE id_chuyennganh = @IdChuyenNganh";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@IdChuyenNganh", id_chuyennganh);
                 cmd.ExecuteNonQuery();
@@ -433,7 +433,7 @@ namespace btl_net.Controller
             try
             {
                 open_csdl();
-                string sql = "select * from tbl_phanloai_monhoc";
+                string sql = "select * from tbl_phanloai_monhoc where is_xoa = 0";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
@@ -868,7 +868,7 @@ namespace btl_net.Controller
             try
             {
                 open_csdl();
-                string sql = "UPDATE tbl_kyhoc SET is_xoa = 0 WHERE id_kyhoc = @IdKyhoc";
+                string sql = "UPDATE tbl_kyhoc SET is_xoa = 1 WHERE id_kyhoc = @IdKyhoc";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@IdKyhoc", id_kyhoc);
                 cmd.ExecuteNonQuery();
@@ -889,7 +889,7 @@ namespace btl_net.Controller
             try
             {
                 open_csdl();
-                string sql = "UPDATE tbl_kyhoc SET is_xoa = 1 WHERE id_kyhoc = @IdKyhoc";
+                string sql = "UPDATE tbl_kyhoc SET is_xoa = 0 WHERE id_kyhoc = @IdKyhoc";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@IdKyhoc", id_kyhoc);
                 cmd.ExecuteNonQuery();
@@ -904,8 +904,40 @@ namespace btl_net.Controller
             }
         }
 
+        //Lớp học*************************************
 
+        public DataTable GetLopHocTheoHocKy(string tenHocKy)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                open_csdl();
+                string query = @"
+                SELECT tbl_lophoc.id_lophoc, tbl_lophoc.tenlop 
+                FROM tbl_lophoc 
+                INNER JOIN tbl_kyhoc ON tbl_lophoc.id_kyhoc = tbl_kyhoc.id_kyhoc 
+                WHERE tbl_kyhoc.kyhoc = @tenHocKy AND tbl_lophoc.is_xoa = 0";
 
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@tenHocKy", tenHocKy);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Ghi log lỗi hoặc xử lý lỗi nếu cần
+                Console.WriteLine("Lỗi: " + ex.Message);
+            }
+            finally
+            {
+                close_csdl();
+            }
+            return dt;
+        }
 
 
 

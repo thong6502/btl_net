@@ -30,6 +30,10 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnKhoiPhuc = new System.Windows.Forms.Button();
+            this.btnThoat = new System.Windows.Forms.Button();
+            this.tbtn_chuyennganhdaxoa = new System.Windows.Forms.RadioButton();
+            this.tbtn_chuyenganhhienco = new System.Windows.Forms.RadioButton();
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
@@ -40,10 +44,7 @@
             this.id_chuyennganh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenchuyennganh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.soluongsinhvien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tbtn_chuyenganhhienco = new System.Windows.Forms.RadioButton();
-            this.tbtn_chuyennganhdaxoa = new System.Windows.Forms.RadioButton();
-            this.btnThoat = new System.Windows.Forms.Button();
-            this.btnKhoiPhuc = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Luoi_CN)).BeginInit();
@@ -61,6 +62,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.btnKhoiPhuc);
             this.groupBox1.Controls.Add(this.btnThoat);
             this.groupBox1.Controls.Add(this.tbtn_chuyennganhdaxoa);
@@ -79,6 +81,51 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin chuyên ngành";
+            // 
+            // btnKhoiPhuc
+            // 
+            this.btnKhoiPhuc.Location = new System.Drawing.Point(773, 214);
+            this.btnKhoiPhuc.Name = "btnKhoiPhuc";
+            this.btnKhoiPhuc.Size = new System.Drawing.Size(111, 44);
+            this.btnKhoiPhuc.TabIndex = 5;
+            this.btnKhoiPhuc.Text = "Khôi phục";
+            this.btnKhoiPhuc.UseVisualStyleBackColor = true;
+            this.btnKhoiPhuc.Click += new System.EventHandler(this.btnKhoiPhuc_Click);
+            // 
+            // btnThoat
+            // 
+            this.btnThoat.Location = new System.Drawing.Point(609, 214);
+            this.btnThoat.Name = "btnThoat";
+            this.btnThoat.Size = new System.Drawing.Size(111, 44);
+            this.btnThoat.TabIndex = 5;
+            this.btnThoat.Text = "Thoát";
+            this.btnThoat.UseVisualStyleBackColor = true;
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
+            // 
+            // tbtn_chuyennganhdaxoa
+            // 
+            this.tbtn_chuyennganhdaxoa.AutoSize = true;
+            this.tbtn_chuyennganhdaxoa.Location = new System.Drawing.Point(530, 162);
+            this.tbtn_chuyennganhdaxoa.Name = "tbtn_chuyennganhdaxoa";
+            this.tbtn_chuyennganhdaxoa.Size = new System.Drawing.Size(190, 24);
+            this.tbtn_chuyennganhdaxoa.TabIndex = 4;
+            this.tbtn_chuyennganhdaxoa.TabStop = true;
+            this.tbtn_chuyennganhdaxoa.Text = "Chuyên ngành đã xóa";
+            this.tbtn_chuyennganhdaxoa.UseVisualStyleBackColor = true;
+            this.tbtn_chuyennganhdaxoa.CheckedChanged += new System.EventHandler(this.tbtn_chuyennganhdaxoa_CheckedChanged);
+            // 
+            // tbtn_chuyenganhhienco
+            // 
+            this.tbtn_chuyenganhhienco.AutoSize = true;
+            this.tbtn_chuyenganhhienco.Checked = true;
+            this.tbtn_chuyenganhhienco.Location = new System.Drawing.Point(301, 163);
+            this.tbtn_chuyenganhhienco.Name = "tbtn_chuyenganhhienco";
+            this.tbtn_chuyenganhhienco.Size = new System.Drawing.Size(195, 24);
+            this.tbtn_chuyenganhhienco.TabIndex = 3;
+            this.tbtn_chuyenganhhienco.TabStop = true;
+            this.tbtn_chuyenganhhienco.Text = "Chuyên ngành hiện có";
+            this.tbtn_chuyenganhhienco.UseVisualStyleBackColor = true;
+            this.tbtn_chuyenganhhienco.CheckedChanged += new System.EventHandler(this.tbtn_chuyenganhhienco_CheckedChanged);
             // 
             // btnXoa
             // 
@@ -115,7 +162,7 @@
             // 
             // txtTenChuyenNganh
             // 
-            this.txtTenChuyenNganh.Location = new System.Drawing.Point(400, 86);
+            this.txtTenChuyenNganh.Location = new System.Drawing.Point(306, 86);
             this.txtTenChuyenNganh.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtTenChuyenNganh.Multiline = true;
             this.txtTenChuyenNganh.Name = "txtTenChuyenNganh";
@@ -125,7 +172,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(229, 95);
+            this.label2.Location = new System.Drawing.Point(135, 95);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(143, 20);
@@ -184,50 +231,14 @@
             this.soluongsinhvien.MinimumWidth = 8;
             this.soluongsinhvien.Name = "soluongsinhvien";
             // 
-            // tbtn_chuyenganhhienco
+            // button1
             // 
-            this.tbtn_chuyenganhhienco.AutoSize = true;
-            this.tbtn_chuyenganhhienco.Checked = true;
-            this.tbtn_chuyenganhhienco.Location = new System.Drawing.Point(301, 163);
-            this.tbtn_chuyenganhhienco.Name = "tbtn_chuyenganhhienco";
-            this.tbtn_chuyenganhhienco.Size = new System.Drawing.Size(195, 24);
-            this.tbtn_chuyenganhhienco.TabIndex = 3;
-            this.tbtn_chuyenganhhienco.TabStop = true;
-            this.tbtn_chuyenganhhienco.Text = "Chuyên ngành hiện có";
-            this.tbtn_chuyenganhhienco.UseVisualStyleBackColor = true;
-            this.tbtn_chuyenganhhienco.CheckedChanged += new System.EventHandler(this.tbtn_chuyenganhhienco_CheckedChanged);
-            // 
-            // tbtn_chuyennganhdaxoa
-            // 
-            this.tbtn_chuyennganhdaxoa.AutoSize = true;
-            this.tbtn_chuyennganhdaxoa.Location = new System.Drawing.Point(530, 162);
-            this.tbtn_chuyennganhdaxoa.Name = "tbtn_chuyennganhdaxoa";
-            this.tbtn_chuyennganhdaxoa.Size = new System.Drawing.Size(190, 24);
-            this.tbtn_chuyennganhdaxoa.TabIndex = 4;
-            this.tbtn_chuyennganhdaxoa.TabStop = true;
-            this.tbtn_chuyennganhdaxoa.Text = "Chuyên ngành đã xóa";
-            this.tbtn_chuyennganhdaxoa.UseVisualStyleBackColor = true;
-            this.tbtn_chuyennganhdaxoa.CheckedChanged += new System.EventHandler(this.tbtn_chuyennganhdaxoa_CheckedChanged);
-            // 
-            // btnThoat
-            // 
-            this.btnThoat.Location = new System.Drawing.Point(609, 214);
-            this.btnThoat.Name = "btnThoat";
-            this.btnThoat.Size = new System.Drawing.Size(111, 44);
-            this.btnThoat.TabIndex = 5;
-            this.btnThoat.Text = "Thoát";
-            this.btnThoat.UseVisualStyleBackColor = true;
-            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
-            // 
-            // btnKhoiPhuc
-            // 
-            this.btnKhoiPhuc.Location = new System.Drawing.Point(773, 214);
-            this.btnKhoiPhuc.Name = "btnKhoiPhuc";
-            this.btnKhoiPhuc.Size = new System.Drawing.Size(111, 44);
-            this.btnKhoiPhuc.TabIndex = 5;
-            this.btnKhoiPhuc.Text = "Khôi phục";
-            this.btnKhoiPhuc.UseVisualStyleBackColor = true;
-            this.btnKhoiPhuc.Click += new System.EventHandler(this.btnKhoiPhuc_Click);
+            this.button1.Location = new System.Drawing.Point(743, 72);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(143, 72);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Thống kê sinh viên của ngành";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // Form4
             // 
@@ -267,5 +278,6 @@
         private System.Windows.Forms.RadioButton tbtn_chuyennganhdaxoa;
         private System.Windows.Forms.Button btnKhoiPhuc;
         private System.Windows.Forms.Button btnThoat;
+        private System.Windows.Forms.Button button1;
     }
 }
