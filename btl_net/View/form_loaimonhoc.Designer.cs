@@ -1,6 +1,6 @@
 ﻿namespace btl_net.View
 {
-    partial class FormQLMH
+    partial class form_loaimonhoc
     {
         /// <summary>
         /// Required designer variable.

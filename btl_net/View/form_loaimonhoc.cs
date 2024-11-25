@@ -6,12 +6,12 @@ using System.Windows.Forms;
 
 namespace btl_net.View
 {
-    public partial class FormQLMH : Form
+    public partial class form_loaimonhoc : Form
     {
         private Dbconnect db = new Dbconnect();
         private int localIsChuaxoa = 0;
 
-        public FormQLMH()
+        public form_loaimonhoc()
         {
             InitializeComponent();
             ResetForm();
@@ -45,7 +45,7 @@ namespace btl_net.View
         {
             try
             {
-                DataTable dt = db.list_loaimonhoc();
+                DataTable dt = db.list_loaimonhocth();
                 if (dt != null)
                 {
                     DataView dv = new DataView(dt)

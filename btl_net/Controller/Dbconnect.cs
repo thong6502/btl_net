@@ -660,7 +660,7 @@ namespace btl_net.Controller
         }
         //------------------------------ PHÂN LOẠI MÔN HỌC
 
-        public DataTable list_loaimonhoc()
+        public DataTable list_loaimonhocth()
         {
             DataTable dt = new DataTable();
             try
