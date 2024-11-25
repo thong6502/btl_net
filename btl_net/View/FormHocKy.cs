@@ -34,21 +34,21 @@ namespace btl_net.View
 
         private void tbtn_hockyhienco_CheckedChanged(object sender, EventArgs e)
         {
-            TaiDuLieuKyHoc(true);
+            TaiDuLieuKyHoc(false);
             txtTenHocKy.Enabled = true;
             btnKhoiPhuc.Enabled = false;
         }
 
         private void tbtn_hockydaxoa_CheckedChanged(object sender, EventArgs e)
         {
-            TaiDuLieuKyHoc(false);
+            TaiDuLieuKyHoc(true);
             txtTenHocKy.Enabled = false;
             btnKhoiPhuc.Enabled = true;
         }
 
         private void FormHocKy_Load(object sender, EventArgs e)
         {
-            TaiDuLieuKyHoc(true);
+            TaiDuLieuKyHoc(false);
             btnKhoiPhuc.Enabled = false;
         }
 
@@ -60,10 +60,10 @@ namespace btl_net.View
                 return;
             }
 
-            kyhoc_Model kyhoc = new kyhoc_Model(0, txtTenHocKy.Text, true);
+            kyhoc_Model kyhoc = new kyhoc_Model(0, txtTenHocKy.Text, false);
             Dbconnect db = new Dbconnect();
             db.them_kyhoc(kyhoc);
-            TaiDuLieuKyHoc(true); 
+            TaiDuLieuKyHoc(false); 
             MessageBox.Show("Thêm học kỳ thành công.");
         }
 
@@ -76,10 +76,10 @@ namespace btl_net.View
             }
 
             int id_kyhoc = (int)Luoi_DSHK.CurrentRow.Cells["id_kyhoc"].Value;
-            kyhoc_Model kyhoc = new kyhoc_Model(id_kyhoc, txtTenHocKy.Text, true);
+            kyhoc_Model kyhoc = new kyhoc_Model(id_kyhoc, txtTenHocKy.Text, false);
             Dbconnect db = new Dbconnect();
             db.sua_kyhoc(kyhoc);
-            TaiDuLieuKyHoc(true); 
+            TaiDuLieuKyHoc(false); 
             MessageBox.Show("Sửa học kỳ thành công.");
         }
 
@@ -104,7 +104,7 @@ namespace btl_net.View
             {
                 int id_kyhoc = (int)Luoi_DSHK.CurrentRow.Cells["id_kyhoc"].Value;
                 db.xoa_kyhoc(id_kyhoc);
-                TaiDuLieuKyHoc(true); 
+                TaiDuLieuKyHoc(false); 
                 MessageBox.Show("Xóa học kỳ thành công.");
             }
             else
@@ -129,8 +129,21 @@ namespace btl_net.View
             int id_kyhoc = (int)Luoi_DSHK.CurrentRow.Cells["id_kyhoc"].Value;
             Dbconnect db = new Dbconnect();
             db.khoi_phuc_kyhoc(id_kyhoc);
-            TaiDuLieuKyHoc(false); 
+            TaiDuLieuKyHoc(true); 
             MessageBox.Show("Khôi phục học kỳ thành công.");
+        }
+
+        private void btnThongKe_Click(object sender, EventArgs e)
+        {
+            string tenHocKy = txtTenHocKy.Text.Trim();
+            if (string.IsNullOrEmpty(tenHocKy))
+            {
+                MessageBox.Show("Vui lòng chọn hoặc nhập tên học kỳ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            FormThongKeLHKH tkForm = new FormThongKeLHKH(tenHocKy);
+            tkForm.ShowDialog();
         }
     }
 }

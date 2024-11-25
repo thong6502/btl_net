@@ -56,6 +56,12 @@
     <Compile Include="Model\monhoc_Model.cs" />
     <Compile Include="Model\phanloaimonhoc_Model.cs" />
     <Compile Include="Model\sinhvien_Model.cs" />
+    <Compile Include="View\FormThongKeLHKH.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormThongKeLHKH.Designer.cs">
+      <DependentUpon>FormThongKeLHKH.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\form_ghidanh.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,11 +82,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\Form2.cs">
+    <Compile Include="View\form_qlmonhoc.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <Compile Include="View\form_qlmonhoc.Designer.cs">
+      <DependentUpon>form_qlmonhoc.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Form3.cs">
       <SubType>Form</SubType>
@@ -133,6 +139,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\FormThongKeLHKH.resx">
+      <DependentUpon>FormThongKeLHKH.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\form_ghidanh.resx">
       <DependentUpon>form_ghidanh.cs</DependentUpon>
     </EmbeddedResource>
@@ -142,8 +151,8 @@
     <EmbeddedResource Include="View\form_sinhvien.resx">
       <DependentUpon>form_sinhvien.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <EmbeddedResource Include="View\form_qlmonhoc.resx">
+      <DependentUpon>form_qlmonhoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Form3.resx">
       <DependentUpon>Form3.cs</DependentUpon>
