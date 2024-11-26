@@ -12,10 +12,10 @@ using System.Windows.Forms;
 
 namespace btl_net.View
 {
-    public partial class Form2 : Form
+    public partial class form_qlmonhoc : Form
     {
         Dbconnect db = new Dbconnect();
-        public Form2()
+        public form_qlmonhoc()
         {
             InitializeComponent();
         }

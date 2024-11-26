@@ -12,10 +12,10 @@ using System.Windows.Forms;
 
 namespace btl_net.View
 {
-    public partial class Form4 : Form
+    public partial class form_chuyennganh : Form
     {
         Dbconnect db = new Dbconnect();
-        public Form4()
+        public form_chuyennganh()
         {
             InitializeComponent();
         }
@@ -28,7 +28,7 @@ namespace btl_net.View
 
         private void Form4_Load(object sender, EventArgs e)
         {
-            TaiDuLieuChuyenNganh(true);
+            TaiDuLieuChuyenNganh(false);
             btnKhoiPhuc.Enabled = false;
         }
 
@@ -40,10 +40,10 @@ namespace btl_net.View
                 return;
             }
 
-            chuyennganh_Model chuyennganh = new chuyennganh_Model(0, txtTenChuyenNganh.Text,true);
+            chuyennganh_Model chuyennganh = new chuyennganh_Model(0, txtTenChuyenNganh.Text,false);
             Dbconnect db = new Dbconnect();
             db.them_chuyennganh(chuyennganh);
-            TaiDuLieuChuyenNganh(true);
+            TaiDuLieuChuyenNganh(false);
             MessageBox.Show("Thêm chuyên ngành thành công.");
         }
 
@@ -56,10 +56,10 @@ namespace btl_net.View
             }
 
             int id_chuyennganh = (int)Luoi_CN.CurrentRow.Cells["id_chuyennganh"].Value;
-            chuyennganh_Model chuyennganh = new chuyennganh_Model(id_chuyennganh, txtTenChuyenNganh.Text, true);
+            chuyennganh_Model chuyennganh = new chuyennganh_Model(id_chuyennganh, txtTenChuyenNganh.Text, false);
             Dbconnect db = new Dbconnect();
             db.sua_chuyennganh(chuyennganh);
-            TaiDuLieuChuyenNganh(true);
+            TaiDuLieuChuyenNganh(false);
             MessageBox.Show("Sửa chuyên ngành thành công.");
         }
 
@@ -90,7 +90,7 @@ namespace btl_net.View
                 int id_chuyennganh = (int)Luoi_CN.CurrentRow.Cells["id_chuyennganh"].Value;
                 Dbconnect db = new Dbconnect();
                 db.xoa_chuyennganh(id_chuyennganh);
-                TaiDuLieuChuyenNganh(true);
+                TaiDuLieuChuyenNganh(false);
                 MessageBox.Show("Xóa chuyên ngành thành công.");
             }
             else
@@ -102,14 +102,14 @@ namespace btl_net.View
 
         private void tbtn_chuyenganhhienco_CheckedChanged(object sender, EventArgs e)
         {
-            TaiDuLieuChuyenNganh(true);
+            TaiDuLieuChuyenNganh(false);
             txtTenChuyenNganh.Enabled = true;
             btnKhoiPhuc.Enabled = false;
         }
 
         private void tbtn_chuyennganhdaxoa_CheckedChanged(object sender, EventArgs e)
         {
-            TaiDuLieuChuyenNganh(false);
+            TaiDuLieuChuyenNganh(true);
             txtTenChuyenNganh.Enabled = false;
             btnKhoiPhuc.Enabled = true;
         }
@@ -129,7 +129,7 @@ namespace btl_net.View
 
             int id_chuyennganh = (int)Luoi_CN.CurrentRow.Cells["id_chuyennganh"].Value;
             db.khoi_phuc_chuyenganh(id_chuyennganh);
-            TaiDuLieuChuyenNganh(false);
+            TaiDuLieuChuyenNganh(true);
             MessageBox.Show("Khôi phục chuyên ngành thành công.");
 
         }

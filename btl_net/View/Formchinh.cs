@@ -27,12 +27,12 @@ namespace btl_net.View
 
         private void mônHọcToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Form2());
+            OpenChildForm(new form_qlmonhoc());
         }
 
         private void đầuĐiểmToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Form3());
+            OpenChildForm(new form_daudiem());
         }
 
         private void OpenChildForm(Form childForm)

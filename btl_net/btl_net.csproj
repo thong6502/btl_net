@@ -56,6 +56,12 @@
     <Compile Include="Model\monhoc_Model.cs" />
     <Compile Include="Model\phanloaimonhoc_Model.cs" />
     <Compile Include="Model\sinhvien_Model.cs" />
+    <Compile Include="View\FormThongKeLHKH.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormThongKeLHKH.Designer.cs">
+      <DependentUpon>FormThongKeLHKH.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\form_ghidanh.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,23 +82,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\Form2.cs">
+    <Compile Include="View\form_qlmonhoc.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <Compile Include="View\form_qlmonhoc.Designer.cs">
+      <DependentUpon>form_qlmonhoc.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Form3.cs">
+    <Compile Include="View\form_daudiem.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Form3.Designer.cs">
-      <DependentUpon>Form3.cs</DependentUpon>
+    <Compile Include="View\form_daudiem.Designer.cs">
+      <DependentUpon>form_daudiem.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Form4.cs">
+    <Compile Include="View\form_chuyennganh.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Form4.Designer.cs">
-      <DependentUpon>Form4.cs</DependentUpon>
+    <Compile Include="View\form_chuyennganh.Designer.cs">
+      <DependentUpon>form_chuyennganh.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Formchinh.cs">
       <SubType>Form</SubType>
@@ -106,11 +112,11 @@
     <Compile Include="View\FormHocKy.Designer.cs">
       <DependentUpon>FormHocKy.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\FormQLMH.cs">
+    <Compile Include="View\form_loaimonhoc.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\FormQLMH.Designer.cs">
-      <DependentUpon>FormQLMH.cs</DependentUpon>
+    <Compile Include="View\form_loaimonhoc.Designer.cs">
+      <DependentUpon>form_loaimonhoc.cs</DependentUpon>
     </Compile>
     <Compile Include="View\form_thongke.cs">
       <SubType>Form</SubType>
@@ -127,6 +133,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\FormThongKeLHKH.resx">
+      <DependentUpon>FormThongKeLHKH.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\form_ghidanh.resx">
       <DependentUpon>form_ghidanh.cs</DependentUpon>
     </EmbeddedResource>
@@ -136,14 +145,14 @@
     <EmbeddedResource Include="View\form_sinhvien.resx">
       <DependentUpon>form_sinhvien.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <EmbeddedResource Include="View\form_qlmonhoc.resx">
+      <DependentUpon>form_qlmonhoc.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Form3.resx">
-      <DependentUpon>Form3.cs</DependentUpon>
+    <EmbeddedResource Include="View\form_daudiem.resx">
+      <DependentUpon>form_daudiem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Form4.resx">
-      <DependentUpon>Form4.cs</DependentUpon>
+    <EmbeddedResource Include="View\form_chuyennganh.resx">
+      <DependentUpon>form_chuyennganh.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Formchinh.resx">
       <DependentUpon>Formchinh.cs</DependentUpon>
@@ -151,8 +160,8 @@
     <EmbeddedResource Include="View\FormHocKy.resx">
       <DependentUpon>FormHocKy.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\FormQLMH.resx">
-      <DependentUpon>FormQLMH.cs</DependentUpon>
+    <EmbeddedResource Include="View\form_loaimonhoc.resx">
+      <DependentUpon>form_loaimonhoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\form_thongke.resx">
       <DependentUpon>form_thongke.cs</DependentUpon>

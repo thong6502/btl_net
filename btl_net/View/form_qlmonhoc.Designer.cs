@@ -1,6 +1,6 @@
 ﻿namespace btl_net.View
 {
-    partial class Form2
+    partial class form_qlmonhoc
     {
         /// <summary>
         /// Required designer variable.
@@ -54,6 +54,8 @@
             this.sotc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tongsobh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.max_bh_chophep = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Luoi_MonHoc)).BeginInit();
@@ -72,6 +74,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.radioButton2);
+            this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.Controls.Add(this.cbLoaiMonHoc);
             this.groupBox1.Controls.Add(this.btnThoat);
             this.groupBox1.Controls.Add(this.btnTimKiem);
@@ -109,7 +113,7 @@
             // 
             // btnThoat
             // 
-            this.btnThoat.Location = new System.Drawing.Point(1520, 369);
+            this.btnThoat.Location = new System.Drawing.Point(1383, 369);
             this.btnThoat.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(168, 59);
@@ -120,7 +124,7 @@
             // 
             // btnTimKiem
             // 
-            this.btnTimKiem.Location = new System.Drawing.Point(1206, 369);
+            this.btnTimKiem.Location = new System.Drawing.Point(1122, 369);
             this.btnTimKiem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(168, 59);
@@ -343,6 +347,28 @@
             this.max_bh_chophep.Name = "max_bh_chophep";
             this.max_bh_chophep.ReadOnly = true;
             // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(1583, 395);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(144, 33);
+            this.radioButton1.TabIndex = 4;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Chưa xóa";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(1755, 395);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(118, 33);
+            this.radioButton2.TabIndex = 5;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Đã xoá";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -392,5 +418,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn sotc;
         private System.Windows.Forms.DataGridViewTextBoxColumn tongsobh;
         private System.Windows.Forms.DataGridViewTextBoxColumn max_bh_chophep;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }

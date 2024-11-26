@@ -1,6 +1,6 @@
 ﻿namespace btl_net.View
 {
-    partial class Form3
+    partial class form_daudiem
     {
         /// <summary>
         /// Required designer variable.
