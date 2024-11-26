@@ -112,12 +112,6 @@
     <Compile Include="View\FormQLMH.Designer.cs">
       <DependentUpon>FormQLMH.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\form_chuyennganh.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\form_chuyennganh.Designer.cs">
-      <DependentUpon>form_chuyennganh.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\form_thongke.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,9 +153,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormQLMH.resx">
       <DependentUpon>FormQLMH.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\form_chuyennganh.resx">
-      <DependentUpon>form_chuyennganh.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\form_thongke.resx">
       <DependentUpon>form_thongke.cs</DependentUpon>

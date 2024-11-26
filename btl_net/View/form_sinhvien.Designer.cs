@@ -561,16 +561,16 @@
             this.khoahoc.Name = "khoahoc";
             this.khoahoc.ReadOnly = true;
             // 
-            // form_quanlysinhvien
+            // form_sinhvien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1382, 708);
+            this.ClientSize = new System.Drawing.Size(1371, 708);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "form_quanlysinhvien";
+            this.Name = "form_sinhvien";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý sinh viên";
             this.groupBox1.ResumeLayout(false);

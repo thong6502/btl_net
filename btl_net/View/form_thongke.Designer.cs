@@ -28,70 +28,85 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.Luoi_SV = new System.Windows.Forms.DataGridView();
+            this.gb_thongke = new System.Windows.Forms.GroupBox();
+            this.Datagridview = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tbtn_conhoc = new System.Windows.Forms.RadioButton();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.tbtn_bohoc = new System.Windows.Forms.RadioButton();
+            this.rbt_pass = new System.Windows.Forms.RadioButton();
+            this.cb_nganhhoc = new System.Windows.Forms.ComboBox();
+            this.rbt_notpass = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cb_tenlophoc = new System.Windows.Forms.ComboBox();
+            this.cb_monhoc = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.cb_nganh = new System.Windows.Forms.ComboBox();
+            this.cb_kyhoc = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.btn_thongke = new System.Windows.Forms.Button();
+            this.is_pass = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.msv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hoten = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tenchuyennganh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.kyhoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tenchuyennganh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenlophoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Luoi_SV)).BeginInit();
+            this.tenmonhoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.max_bh_chophep = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.diemquamon = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.detail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txt_msv = new System.Windows.Forms.TextBox();
+            this.txt_ten = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.gb_thongke.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Datagridview)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox2
+            // gb_thongke
             // 
-            this.groupBox2.Controls.Add(this.Luoi_SV);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(23, 374);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox2.Size = new System.Drawing.Size(713, 251);
-            this.groupBox2.TabIndex = 8;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Tổng số : 0";
+            this.gb_thongke.Controls.Add(this.Datagridview);
+            this.gb_thongke.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gb_thongke.Location = new System.Drawing.Point(23, 374);
+            this.gb_thongke.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gb_thongke.Name = "gb_thongke";
+            this.gb_thongke.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gb_thongke.Size = new System.Drawing.Size(1650, 251);
+            this.gb_thongke.TabIndex = 8;
+            this.gb_thongke.TabStop = false;
+            this.gb_thongke.Text = "Tổng số : 0";
             // 
-            // Luoi_SV
+            // Datagridview
             // 
-            this.Luoi_SV.AllowUserToAddRows = false;
-            this.Luoi_SV.AllowUserToDeleteRows = false;
-            this.Luoi_SV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Luoi_SV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Datagridview.AllowUserToAddRows = false;
+            this.Datagridview.AllowUserToDeleteRows = false;
+            this.Datagridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Datagridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.is_pass,
             this.msv,
             this.hoten,
-            this.tenchuyennganh,
             this.kyhoc,
-            this.tenlophoc});
-            this.Luoi_SV.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Luoi_SV.Location = new System.Drawing.Point(3, 19);
-            this.Luoi_SV.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Luoi_SV.Name = "Luoi_SV";
-            this.Luoi_SV.ReadOnly = true;
-            this.Luoi_SV.RowHeadersWidth = 51;
-            this.Luoi_SV.RowTemplate.Height = 28;
-            this.Luoi_SV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Luoi_SV.Size = new System.Drawing.Size(707, 230);
-            this.Luoi_SV.TabIndex = 0;
+            this.tenchuyennganh,
+            this.tenlophoc,
+            this.tenmonhoc,
+            this.max_bh_chophep,
+            this.diemquamon,
+            this.detail});
+            this.Datagridview.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Datagridview.Location = new System.Drawing.Point(3, 19);
+            this.Datagridview.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Datagridview.Name = "Datagridview";
+            this.Datagridview.ReadOnly = true;
+            this.Datagridview.RowHeadersWidth = 51;
+            this.Datagridview.RowTemplate.Height = 28;
+            this.Datagridview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Datagridview.Size = new System.Drawing.Size(1644, 230);
+            this.Datagridview.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(243, 9);
+            this.label1.Location = new System.Drawing.Point(745, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(293, 31);
             this.label1.TabIndex = 6;
@@ -99,105 +114,112 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.tbtn_conhoc);
-            this.groupBox1.Controls.Add(this.comboBox3);
-            this.groupBox1.Controls.Add(this.tbtn_bohoc);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.txt_ten);
+            this.groupBox1.Controls.Add(this.txt_msv);
+            this.groupBox1.Controls.Add(this.btn_thongke);
+            this.groupBox1.Controls.Add(this.rbt_pass);
+            this.groupBox1.Controls.Add(this.cb_nganhhoc);
+            this.groupBox1.Controls.Add(this.rbt_notpass);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.comboBox2);
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.cb_tenlophoc);
+            this.groupBox1.Controls.Add(this.cb_monhoc);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.cb_nganh);
+            this.groupBox1.Controls.Add(this.cb_kyhoc);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Location = new System.Drawing.Point(26, 69);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(707, 273);
+            this.groupBox1.Size = new System.Drawing.Size(1647, 273);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
-            // tbtn_conhoc
+            // rbt_pass
             // 
-            this.tbtn_conhoc.AutoSize = true;
-            this.tbtn_conhoc.Checked = true;
-            this.tbtn_conhoc.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.tbtn_conhoc.Location = new System.Drawing.Point(575, 239);
-            this.tbtn_conhoc.Name = "tbtn_conhoc";
-            this.tbtn_conhoc.Size = new System.Drawing.Size(58, 20);
-            this.tbtn_conhoc.TabIndex = 30;
-            this.tbtn_conhoc.TabStop = true;
-            this.tbtn_conhoc.Text = "pass";
-            this.tbtn_conhoc.UseVisualStyleBackColor = true;
+            this.rbt_pass.AutoSize = true;
+            this.rbt_pass.Checked = true;
+            this.rbt_pass.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rbt_pass.Location = new System.Drawing.Point(1500, 248);
+            this.rbt_pass.Name = "rbt_pass";
+            this.rbt_pass.Size = new System.Drawing.Size(58, 20);
+            this.rbt_pass.TabIndex = 30;
+            this.rbt_pass.TabStop = true;
+            this.rbt_pass.Text = "pass";
+            this.rbt_pass.UseVisualStyleBackColor = true;
+            this.rbt_pass.CheckedChanged += new System.EventHandler(this.rbt_pass_CheckedChanged);
             // 
-            // comboBox3
+            // cb_nganhhoc
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.ItemHeight = 16;
-            this.comboBox3.Location = new System.Drawing.Point(150, 176);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(497, 24);
-            this.comboBox3.TabIndex = 34;
+            this.cb_nganhhoc.FormattingEnabled = true;
+            this.cb_nganhhoc.ItemHeight = 16;
+            this.cb_nganhhoc.Location = new System.Drawing.Point(223, 154);
+            this.cb_nganhhoc.Name = "cb_nganhhoc";
+            this.cb_nganhhoc.Size = new System.Drawing.Size(497, 24);
+            this.cb_nganhhoc.TabIndex = 34;
             // 
-            // tbtn_bohoc
+            // rbt_notpass
             // 
-            this.tbtn_bohoc.AutoSize = true;
-            this.tbtn_bohoc.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.tbtn_bohoc.Location = new System.Drawing.Point(642, 238);
-            this.tbtn_bohoc.Name = "tbtn_bohoc";
-            this.tbtn_bohoc.Size = new System.Drawing.Size(59, 20);
-            this.tbtn_bohoc.TabIndex = 28;
-            this.tbtn_bohoc.Text = "Trượt";
-            this.tbtn_bohoc.UseVisualStyleBackColor = true;
+            this.rbt_notpass.AutoSize = true;
+            this.rbt_notpass.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.rbt_notpass.Location = new System.Drawing.Point(1567, 247);
+            this.rbt_notpass.Name = "rbt_notpass";
+            this.rbt_notpass.Size = new System.Drawing.Size(59, 20);
+            this.rbt_notpass.TabIndex = 28;
+            this.rbt_notpass.Text = "Trượt";
+            this.rbt_notpass.UseVisualStyleBackColor = true;
+            this.rbt_notpass.CheckedChanged += new System.EventHandler(this.rbt_notpass_CheckedChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(37, 184);
+            this.label3.Location = new System.Drawing.Point(124, 162);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(75, 16);
             this.label3.TabIndex = 33;
             this.label3.Text = "Ngành học:";
             // 
-            // comboBox2
+            // cb_tenlophoc
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.ItemHeight = 16;
-            this.comboBox2.Location = new System.Drawing.Point(150, 35);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(497, 24);
-            this.comboBox2.TabIndex = 32;
+            this.cb_tenlophoc.FormattingEnabled = true;
+            this.cb_tenlophoc.ItemHeight = 16;
+            this.cb_tenlophoc.Location = new System.Drawing.Point(1034, 57);
+            this.cb_tenlophoc.Name = "cb_tenlophoc";
+            this.cb_tenlophoc.Size = new System.Drawing.Size(497, 24);
+            this.cb_tenlophoc.TabIndex = 32;
             // 
-            // comboBox1
+            // cb_monhoc
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.ItemHeight = 16;
-            this.comboBox1.Location = new System.Drawing.Point(150, 125);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(497, 24);
-            this.comboBox1.TabIndex = 31;
+            this.cb_monhoc.FormattingEnabled = true;
+            this.cb_monhoc.ItemHeight = 16;
+            this.cb_monhoc.Location = new System.Drawing.Point(1034, 159);
+            this.cb_monhoc.Name = "cb_monhoc";
+            this.cb_monhoc.Size = new System.Drawing.Size(497, 24);
+            this.cb_monhoc.TabIndex = 31;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(51, 133);
+            this.label2.Location = new System.Drawing.Point(935, 165);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 16);
             this.label2.TabIndex = 29;
             this.label2.Text = "Môn học:";
             // 
-            // cb_nganh
+            // cb_kyhoc
             // 
-            this.cb_nganh.FormattingEnabled = true;
-            this.cb_nganh.ItemHeight = 16;
-            this.cb_nganh.Location = new System.Drawing.Point(150, 75);
-            this.cb_nganh.Name = "cb_nganh";
-            this.cb_nganh.Size = new System.Drawing.Size(497, 24);
-            this.cb_nganh.TabIndex = 27;
+            this.cb_kyhoc.FormattingEnabled = true;
+            this.cb_kyhoc.ItemHeight = 16;
+            this.cb_kyhoc.Location = new System.Drawing.Point(1034, 106);
+            this.cb_kyhoc.Name = "cb_kyhoc";
+            this.cb_kyhoc.Size = new System.Drawing.Size(497, 24);
+            this.cb_kyhoc.TabIndex = 27;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(31, 43);
+            this.label12.Location = new System.Drawing.Point(915, 65);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(81, 16);
             this.label12.TabIndex = 25;
@@ -206,11 +228,31 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(62, 83);
+            this.label11.Location = new System.Drawing.Point(946, 114);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(50, 16);
             this.label11.TabIndex = 26;
             this.label11.Text = "Kỳ học:";
+            // 
+            // btn_thongke
+            // 
+            this.btn_thongke.Location = new System.Drawing.Point(749, 210);
+            this.btn_thongke.Name = "btn_thongke";
+            this.btn_thongke.Size = new System.Drawing.Size(153, 38);
+            this.btn_thongke.TabIndex = 35;
+            this.btn_thongke.Text = "Thống kê";
+            this.btn_thongke.UseVisualStyleBackColor = true;
+            this.btn_thongke.Click += new System.EventHandler(this.btn_thongke_Click);
+            // 
+            // is_pass
+            // 
+            this.is_pass.DataPropertyName = "is_pass";
+            this.is_pass.HeaderText = "is_pass";
+            this.is_pass.MinimumWidth = 6;
+            this.is_pass.Name = "is_pass";
+            this.is_pass.ReadOnly = true;
+            this.is_pass.Visible = false;
+            this.is_pass.Width = 125;
             // 
             // msv
             // 
@@ -230,15 +272,6 @@
             this.hoten.Name = "hoten";
             this.hoten.ReadOnly = true;
             // 
-            // tenchuyennganh
-            // 
-            this.tenchuyennganh.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.tenchuyennganh.DataPropertyName = "tenchuyennganh";
-            this.tenchuyennganh.HeaderText = "Chuyên ngành";
-            this.tenchuyennganh.MinimumWidth = 6;
-            this.tenchuyennganh.Name = "tenchuyennganh";
-            this.tenchuyennganh.ReadOnly = true;
-            // 
             // kyhoc
             // 
             this.kyhoc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -247,6 +280,15 @@
             this.kyhoc.MinimumWidth = 6;
             this.kyhoc.Name = "kyhoc";
             this.kyhoc.ReadOnly = true;
+            // 
+            // tenchuyennganh
+            // 
+            this.tenchuyennganh.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.tenchuyennganh.DataPropertyName = "tenchuyennganh";
+            this.tenchuyennganh.HeaderText = "Chuyên ngành";
+            this.tenchuyennganh.MinimumWidth = 6;
+            this.tenchuyennganh.Name = "tenchuyennganh";
+            this.tenchuyennganh.ReadOnly = true;
             // 
             // tenlophoc
             // 
@@ -257,18 +299,87 @@
             this.tenlophoc.Name = "tenlophoc";
             this.tenlophoc.ReadOnly = true;
             // 
+            // tenmonhoc
+            // 
+            this.tenmonhoc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.tenmonhoc.DataPropertyName = "tenmonhoc";
+            this.tenmonhoc.HeaderText = "Môn học";
+            this.tenmonhoc.MinimumWidth = 6;
+            this.tenmonhoc.Name = "tenmonhoc";
+            this.tenmonhoc.ReadOnly = true;
+            // 
+            // max_bh_chophep
+            // 
+            this.max_bh_chophep.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.max_bh_chophep.DataPropertyName = "max_bh_chophep";
+            this.max_bh_chophep.HeaderText = "Giới hạn buổi nghỉ";
+            this.max_bh_chophep.MinimumWidth = 6;
+            this.max_bh_chophep.Name = "max_bh_chophep";
+            this.max_bh_chophep.ReadOnly = true;
+            // 
+            // diemquamon
+            // 
+            this.diemquamon.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.diemquamon.DataPropertyName = "diemquamon";
+            this.diemquamon.HeaderText = "Điểm qua môn";
+            this.diemquamon.MinimumWidth = 6;
+            this.diemquamon.Name = "diemquamon";
+            this.diemquamon.ReadOnly = true;
+            // 
+            // detail
+            // 
+            this.detail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.detail.DataPropertyName = "detail";
+            this.detail.HeaderText = "Chi tiết";
+            this.detail.MinimumWidth = 6;
+            this.detail.Name = "detail";
+            this.detail.ReadOnly = true;
+            // 
+            // txt_msv
+            // 
+            this.txt_msv.Location = new System.Drawing.Point(223, 57);
+            this.txt_msv.Name = "txt_msv";
+            this.txt_msv.Size = new System.Drawing.Size(497, 22);
+            this.txt_msv.TabIndex = 36;
+            // 
+            // txt_ten
+            // 
+            this.txt_ten.Location = new System.Drawing.Point(223, 104);
+            this.txt_ten.Name = "txt_ten";
+            this.txt_ten.Size = new System.Drawing.Size(497, 22);
+            this.txt_ten.TabIndex = 37;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(118, 64);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(81, 16);
+            this.label4.TabIndex = 38;
+            this.label4.Text = "Mã sinh viên";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(113, 106);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(86, 16);
+            this.label5.TabIndex = 39;
+            this.label5.Text = "Tên sinh viên";
+            // 
             // form_thongke
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(757, 650);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1741, 650);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.gb_thongke);
             this.Controls.Add(this.label1);
             this.Name = "form_thongke";
             this.Text = "form_thongke";
-            this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Luoi_SV)).EndInit();
+            this.gb_thongke.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Datagridview)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -278,24 +389,34 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DataGridView Luoi_SV;
+        private System.Windows.Forms.GroupBox gb_thongke;
+        private System.Windows.Forms.DataGridView Datagridview;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn msv;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hoten;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tenchuyennganh;
-        private System.Windows.Forms.DataGridViewTextBoxColumn kyhoc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tenlophoc;
-        private System.Windows.Forms.RadioButton tbtn_conhoc;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.RadioButton tbtn_bohoc;
+        private System.Windows.Forms.RadioButton rbt_pass;
+        private System.Windows.Forms.ComboBox cb_nganhhoc;
+        private System.Windows.Forms.RadioButton rbt_notpass;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cb_tenlophoc;
+        private System.Windows.Forms.ComboBox cb_monhoc;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cb_nganh;
+        private System.Windows.Forms.ComboBox cb_kyhoc;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button btn_thongke;
+        private System.Windows.Forms.DataGridViewTextBoxColumn is_pass;
+        private System.Windows.Forms.DataGridViewTextBoxColumn msv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hoten;
+        private System.Windows.Forms.DataGridViewTextBoxColumn kyhoc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tenchuyennganh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tenlophoc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tenmonhoc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn max_bh_chophep;
+        private System.Windows.Forms.DataGridViewTextBoxColumn diemquamon;
+        private System.Windows.Forms.DataGridViewTextBoxColumn detail;
+        private System.Windows.Forms.TextBox txt_ten;
+        private System.Windows.Forms.TextBox txt_msv;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
     }
 }
