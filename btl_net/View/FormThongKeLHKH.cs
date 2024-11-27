@@ -24,7 +24,7 @@ namespace btl_net.View
         }
         private void TaiDuLieuThongKeLopHoc()
         {
-            DataTable dt = db.GetLopHocTheoHocKy(tenHocKy);
+            /*DataTable dt = db.GetLopHocTheoHocKy(tenHocKy);
             if (dt != null)
             {
                 LUOI_LHHK.DataSource = dt; // Hiển thị danh sách lớp học
@@ -33,7 +33,7 @@ namespace btl_net.View
             else
             {
                 MessageBox.Show("Không thể tải dữ liệu lớp học.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            }*/
         }
     }
 }

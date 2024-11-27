@@ -32,6 +32,11 @@
             this.Datagridview = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txt_ten = new System.Windows.Forms.TextBox();
+            this.txt_msv = new System.Windows.Forms.TextBox();
+            this.btn_thongke = new System.Windows.Forms.Button();
             this.rbt_pass = new System.Windows.Forms.RadioButton();
             this.cb_nganhhoc = new System.Windows.Forms.ComboBox();
             this.rbt_notpass = new System.Windows.Forms.RadioButton();
@@ -42,7 +47,7 @@
             this.cb_kyhoc = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.btn_thongke = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.is_pass = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.msv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hoten = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,10 +58,8 @@
             this.max_bh_chophep = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.diemquamon = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.detail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txt_msv = new System.Windows.Forms.TextBox();
-            this.txt_ten = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.sobuoinghi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.diem_tong_ket = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gb_thongke.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Datagridview)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -90,10 +93,13 @@
             this.tenmonhoc,
             this.max_bh_chophep,
             this.diemquamon,
-            this.detail});
+            this.detail,
+            this.sobuoinghi,
+            this.diem_tong_ket});
             this.Datagridview.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Datagridview.Location = new System.Drawing.Point(3, 19);
             this.Datagridview.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Datagridview.MultiSelect = false;
             this.Datagridview.Name = "Datagridview";
             this.Datagridview.ReadOnly = true;
             this.Datagridview.RowHeadersWidth = 51;
@@ -135,6 +141,48 @@
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(113, 106);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(86, 16);
+            this.label5.TabIndex = 39;
+            this.label5.Text = "Tên sinh viên";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(118, 64);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(81, 16);
+            this.label4.TabIndex = 38;
+            this.label4.Text = "Mã sinh viên";
+            // 
+            // txt_ten
+            // 
+            this.txt_ten.Location = new System.Drawing.Point(223, 104);
+            this.txt_ten.Name = "txt_ten";
+            this.txt_ten.Size = new System.Drawing.Size(497, 22);
+            this.txt_ten.TabIndex = 37;
+            // 
+            // txt_msv
+            // 
+            this.txt_msv.Location = new System.Drawing.Point(223, 57);
+            this.txt_msv.Name = "txt_msv";
+            this.txt_msv.Size = new System.Drawing.Size(497, 22);
+            this.txt_msv.TabIndex = 36;
+            // 
+            // btn_thongke
+            // 
+            this.btn_thongke.Location = new System.Drawing.Point(749, 210);
+            this.btn_thongke.Name = "btn_thongke";
+            this.btn_thongke.Size = new System.Drawing.Size(153, 38);
+            this.btn_thongke.TabIndex = 35;
+            this.btn_thongke.Text = "Thống kê";
+            this.btn_thongke.UseVisualStyleBackColor = true;
+            this.btn_thongke.Click += new System.EventHandler(this.btn_thongke_Click);
             // 
             // rbt_pass
             // 
@@ -234,15 +282,19 @@
             this.label11.TabIndex = 26;
             this.label11.Text = "Kỳ học:";
             // 
-            // btn_thongke
+            // comboBox1
             // 
-            this.btn_thongke.Location = new System.Drawing.Point(749, 210);
-            this.btn_thongke.Name = "btn_thongke";
-            this.btn_thongke.Size = new System.Drawing.Size(153, 38);
-            this.btn_thongke.TabIndex = 35;
-            this.btn_thongke.Text = "Thống kê";
-            this.btn_thongke.UseVisualStyleBackColor = true;
-            this.btn_thongke.Click += new System.EventHandler(this.btn_thongke_Click);
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "ALL",
+            "Trượt điểm danh",
+            "Trượt môn"});
+            this.comboBox1.Location = new System.Drawing.Point(1481, 345);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(192, 24);
+            this.comboBox1.TabIndex = 10;
+            this.comboBox1.Visible = false;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // is_pass
             // 
@@ -335,37 +387,25 @@
             this.detail.Name = "detail";
             this.detail.ReadOnly = true;
             // 
-            // txt_msv
+            // sobuoinghi
             // 
-            this.txt_msv.Location = new System.Drawing.Point(223, 57);
-            this.txt_msv.Name = "txt_msv";
-            this.txt_msv.Size = new System.Drawing.Size(497, 22);
-            this.txt_msv.TabIndex = 36;
+            this.sobuoinghi.DataPropertyName = "sobuoinghi";
+            this.sobuoinghi.HeaderText = "sobuoinghi";
+            this.sobuoinghi.MinimumWidth = 6;
+            this.sobuoinghi.Name = "sobuoinghi";
+            this.sobuoinghi.ReadOnly = true;
+            this.sobuoinghi.Visible = false;
+            this.sobuoinghi.Width = 125;
             // 
-            // txt_ten
+            // diem_tong_ket
             // 
-            this.txt_ten.Location = new System.Drawing.Point(223, 104);
-            this.txt_ten.Name = "txt_ten";
-            this.txt_ten.Size = new System.Drawing.Size(497, 22);
-            this.txt_ten.TabIndex = 37;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(118, 64);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(81, 16);
-            this.label4.TabIndex = 38;
-            this.label4.Text = "Mã sinh viên";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(113, 106);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(86, 16);
-            this.label5.TabIndex = 39;
-            this.label5.Text = "Tên sinh viên";
+            this.diem_tong_ket.DataPropertyName = "diem_tong_ket";
+            this.diem_tong_ket.HeaderText = "diem_tong_ket1";
+            this.diem_tong_ket.MinimumWidth = 6;
+            this.diem_tong_ket.Name = "diem_tong_ket";
+            this.diem_tong_ket.ReadOnly = true;
+            this.diem_tong_ket.Visible = false;
+            this.diem_tong_ket.Width = 125;
             // 
             // form_thongke
             // 
@@ -373,6 +413,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1741, 650);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gb_thongke);
             this.Controls.Add(this.label1);
@@ -404,6 +445,11 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button btn_thongke;
+        private System.Windows.Forms.TextBox txt_ten;
+        private System.Windows.Forms.TextBox txt_msv;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.DataGridViewTextBoxColumn is_pass;
         private System.Windows.Forms.DataGridViewTextBoxColumn msv;
         private System.Windows.Forms.DataGridViewTextBoxColumn hoten;
@@ -414,9 +460,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn max_bh_chophep;
         private System.Windows.Forms.DataGridViewTextBoxColumn diemquamon;
         private System.Windows.Forms.DataGridViewTextBoxColumn detail;
-        private System.Windows.Forms.TextBox txt_ten;
-        private System.Windows.Forms.TextBox txt_msv;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sobuoinghi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn diem_tong_ket;
     }
 }

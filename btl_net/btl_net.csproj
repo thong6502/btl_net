@@ -68,6 +68,24 @@
     <Compile Include="View\form_ghidanh.Designer.cs">
       <DependentUpon>form_ghidanh.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\form_lklophoc_by_sinhvien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\form_lklophoc_by_sinhvien.Designer.cs">
+      <DependentUpon>form_lklophoc_by_sinhvien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\form_lkmonhoc_by_loaimh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\form_lkmonhoc_by_loaimh.Designer.cs">
+      <DependentUpon>form_lkmonhoc_by_loaimh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\form_lkmonhoc_by_sinhvien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\form_lkmonhoc_by_sinhvien.Designer.cs">
+      <DependentUpon>form_lkmonhoc_by_sinhvien.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\form_lophoc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,6 +156,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\form_ghidanh.resx">
       <DependentUpon>form_ghidanh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\form_lklophoc_by_sinhvien.resx">
+      <DependentUpon>form_lklophoc_by_sinhvien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\form_lkmonhoc_by_loaimh.resx">
+      <DependentUpon>form_lkmonhoc_by_loaimh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\form_lkmonhoc_by_sinhvien.resx">
+      <DependentUpon>form_lkmonhoc_by_sinhvien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\form_lophoc.resx">
       <DependentUpon>form_lophoc.cs</DependentUpon>

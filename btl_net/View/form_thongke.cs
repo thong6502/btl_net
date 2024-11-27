@@ -15,6 +15,7 @@ namespace btl_net.View
     {
         Dbconnect db = new Dbconnect();
         int global_is_pass = 1;
+        int dk_truot = -1;
         public form_thongke()
         {
             InitializeComponent();
@@ -75,7 +76,25 @@ namespace btl_net.View
 
             DataTable dt = db.search_thongke(msv, tensv, tenlophoc, kyhoc, monhoc, nghanhhoc);
             DataView dv = new DataView(dt);
-            dv.RowFilter = "is_pass = " + global_is_pass;
+            if(global_is_pass == 1)
+            {
+                dv.RowFilter = $"is_pass = {global_is_pass}";
+            }
+            else
+            {
+                if(dk_truot == 0)
+                {
+                    dv.RowFilter = $"is_pass = {global_is_pass}";
+                }
+                else if(dk_truot == 1)
+                {
+                    dv.RowFilter = $"is_pass = {global_is_pass} AND sobuoinghi >  max_bh_chophep";
+                }else if(dk_truot == 2)
+                {
+                    dv.RowFilter = $"is_pass = {global_is_pass} AND diem_tong_ket <  diemquamon";
+                }
+            }
+            
             Datagridview.DataSource = dv;
 
             gb_thongke.Text =  "Tổng số: "+ Datagridview.Rows.Count.ToString();
@@ -89,11 +108,20 @@ namespace btl_net.View
         private void rbt_pass_CheckedChanged(object sender, EventArgs e)
         {
             global_is_pass = 1;
+            comboBox1.Visible = false;
+            comboBox1.SelectedIndex = -1;
         }
 
         private void rbt_notpass_CheckedChanged(object sender, EventArgs e)
         {
             global_is_pass = 0;
+            comboBox1.Visible = true;
+            comboBox1.SelectedIndex = 0;
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dk_truot = comboBox1.SelectedIndex;
         }
     }
     

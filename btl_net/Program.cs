@@ -17,7 +17,7 @@ namespace btl_net
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new form_lophoc());
+            Application.Run(new form_thongke());
         }
     }
 }

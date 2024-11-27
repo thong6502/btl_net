@@ -100,20 +100,6 @@ namespace btl_net.View
             }
         }
 
-        private void tbtn_chuyenganhhienco_CheckedChanged(object sender, EventArgs e)
-        {
-            TaiDuLieuChuyenNganh(false);
-            txtTenChuyenNganh.Enabled = true;
-            btnKhoiPhuc.Enabled = false;
-        }
-
-        private void tbtn_chuyennganhdaxoa_CheckedChanged(object sender, EventArgs e)
-        {
-            TaiDuLieuChuyenNganh(true);
-            txtTenChuyenNganh.Enabled = false;
-            btnKhoiPhuc.Enabled = true;
-        }
-
         private void btnThoat_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -132,6 +118,29 @@ namespace btl_net.View
             TaiDuLieuChuyenNganh(true);
             MessageBox.Show("Khôi phục chuyên ngành thành công.");
 
+        }
+
+        private void chb_thungrac_CheckedChanged(object sender, EventArgs e)
+        {
+            if(chb_thungrac.Checked)
+            {
+                TaiDuLieuChuyenNganh(true);
+                txtTenChuyenNganh.Enabled = false;
+                btnKhoiPhuc.Enabled = true;
+                btnThem.Enabled = false;
+                btnSua.Enabled = false;
+                btnXoa.Enabled = false;
+            }
+            else
+            {
+                TaiDuLieuChuyenNganh(false);
+                txtTenChuyenNganh.Enabled = true;
+                btnKhoiPhuc.Enabled = false;
+                btnThem.Enabled = true;
+                btnSua.Enabled = true;
+                btnXoa.Enabled = true;
+            }
+            txtTenChuyenNganh.Text = "";
         }
     }
 }

@@ -179,12 +179,25 @@ namespace btl_net.View
             if (chb_thungrac.Checked)
             {
                 global_is_xoa = 1;
+                btn_khoiphuc.Enabled = true;
+                btn_them.Enabled = false;
+                btn_sua.Enabled = false;
+                btn_xoa.Enabled = false;
             }
             else
             {
                 global_is_xoa = 0;
+                btn_khoiphuc.Enabled = false;
+                btn_them.Enabled = true;
+                btn_sua.Enabled = true;
+                btn_xoa.Enabled = true;
             }
-            init();
+            cb_kyhoc.SelectedIndex = -1;
+            cb_lmh.SelectedIndex = -1;
+            cb_monhoc.SelectedIndex = -1;
+            load_datagridview();
+            txt_tenlophoc.Text = string.Empty;
+            txt_toidasv.Text = "40";
         }
 
         private void btn_khoiphuc_Click(object sender, EventArgs e)

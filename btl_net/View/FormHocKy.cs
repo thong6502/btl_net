@@ -32,20 +32,6 @@ namespace btl_net.View
 
         }
 
-        private void tbtn_hockyhienco_CheckedChanged(object sender, EventArgs e)
-        {
-            TaiDuLieuKyHoc(false);
-            txtTenHocKy.Enabled = true;
-            btnKhoiPhuc.Enabled = false;
-        }
-
-        private void tbtn_hockydaxoa_CheckedChanged(object sender, EventArgs e)
-        {
-            TaiDuLieuKyHoc(true);
-            txtTenHocKy.Enabled = false;
-            btnKhoiPhuc.Enabled = true;
-        }
-
         private void FormHocKy_Load(object sender, EventArgs e)
         {
             TaiDuLieuKyHoc(false);
@@ -54,33 +40,71 @@ namespace btl_net.View
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtTenHocKy.Text))
+            if (btnThem.Text.Equals("Thêm"))
             {
-                MessageBox.Show("Vui lòng nhập tên học kỳ.");
-                return;
+                txtTenHocKy.Enabled = true;
+                btnSua.Enabled = false;
+                btnXoa.Enabled = false;
+                chb_thungrac.Enabled = false;
+                btnThem.Text = "Lưu";
             }
+            else
+            {
+                if (string.IsNullOrEmpty(txtTenHocKy.Text))
+                {
+                    MessageBox.Show("Vui lòng nhập tên học kỳ.");
+                    return;
+                }
+                kyhoc_Model kyhoc = new kyhoc_Model(0, txtTenHocKy.Text, false);
+                Dbconnect db = new Dbconnect();
+                db.them_kyhoc(kyhoc);
+                TaiDuLieuKyHoc(false);
+                MessageBox.Show("Thêm học kỳ thành công.");
 
-            kyhoc_Model kyhoc = new kyhoc_Model(0, txtTenHocKy.Text, false);
-            Dbconnect db = new Dbconnect();
-            db.them_kyhoc(kyhoc);
-            TaiDuLieuKyHoc(false); 
-            MessageBox.Show("Thêm học kỳ thành công.");
+                txtTenHocKy.Enabled = false;
+                btnSua.Enabled = true;
+                btnXoa.Enabled = true;
+                chb_thungrac.Enabled = false;
+                btnThem.Text = "Thêm";
+            }
+            
+
+            
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            if (Luoi_DSHK.CurrentRow == null || string.IsNullOrEmpty(txtTenHocKy.Text))
+            if (btnSua.Text.Equals("Sửa"))
             {
-                MessageBox.Show("Vui lòng chọn học kỳ và nhập tên học kỳ mới.");
-                return;
+                txtTenHocKy.Enabled = true;
+                btnThem.Enabled = false;
+                btnXoa.Enabled = false;
+                chb_thungrac.Enabled = false;
+                btnSua.Text = "Cập nhật";
             }
+            else
+            {
+                if (Luoi_DSHK.CurrentRow == null || string.IsNullOrEmpty(txtTenHocKy.Text))
+                {
+                    MessageBox.Show("Vui lòng chọn học kỳ và nhập tên học kỳ mới.");
+                    return;
+                }
 
-            int id_kyhoc = (int)Luoi_DSHK.CurrentRow.Cells["id_kyhoc"].Value;
-            kyhoc_Model kyhoc = new kyhoc_Model(id_kyhoc, txtTenHocKy.Text, false);
-            Dbconnect db = new Dbconnect();
-            db.sua_kyhoc(kyhoc);
-            TaiDuLieuKyHoc(false); 
-            MessageBox.Show("Sửa học kỳ thành công.");
+                int id_kyhoc = (int)Luoi_DSHK.CurrentRow.Cells["id_kyhoc"].Value;
+                kyhoc_Model kyhoc = new kyhoc_Model(id_kyhoc, txtTenHocKy.Text, false);
+                Dbconnect db = new Dbconnect();
+                db.sua_kyhoc(kyhoc);
+                TaiDuLieuKyHoc(false);
+                txtTenHocKy.Text = string.Empty;
+                MessageBox.Show("Sửa học kỳ thành công.");
+
+                txtTenHocKy.Enabled = false;
+                btnThem.Enabled = true;
+                btnXoa.Enabled = true;
+                chb_thungrac.Enabled = true;
+                btnSua.Text = "Sửa";
+            }
+            
         }
 
         private void Luoi_DSHK_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -144,6 +168,28 @@ namespace btl_net.View
 
             FormThongKeLHKH tkForm = new FormThongKeLHKH(tenHocKy);
             tkForm.ShowDialog();
+        }
+
+        private void chb_thungrac_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chb_thungrac.Checked)
+            {
+                TaiDuLieuKyHoc(true);
+                txtTenHocKy.Enabled = false;
+                btnThem.Enabled = false;
+                btnSua.Enabled = false;
+                btnXoa.Enabled = false;
+                btnKhoiPhuc.Enabled = true;
+            }
+            else
+            {
+                TaiDuLieuKyHoc(false);
+                txtTenHocKy.Enabled = true;
+                btnThem.Enabled = true;
+                btnSua.Enabled = true;
+                btnXoa.Enabled = true;
+                btnKhoiPhuc.Enabled = false;
+            }
         }
     }
 }

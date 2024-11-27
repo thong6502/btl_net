@@ -50,14 +50,15 @@
             this.btn_search = new System.Windows.Forms.Button();
             this.cb_lmh = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txt_toidasv = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cb_monhoc = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.txt_toidasv = new System.Windows.Forms.NumericUpDown();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datagridview)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_toidasv)).BeginInit();
             this.SuspendLayout();
             // 
             // cb_kyhoc
@@ -71,6 +72,7 @@
             // 
             // btn_thoat
             // 
+            this.btn_thoat.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_thoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.btn_thoat.Location = new System.Drawing.Point(676, 293);
             this.btn_thoat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -83,6 +85,7 @@
             // 
             // btn_xoa
             // 
+            this.btn_xoa.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_xoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.btn_xoa.Location = new System.Drawing.Point(265, 293);
             this.btn_xoa.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -95,6 +98,7 @@
             // 
             // btn_sua
             // 
+            this.btn_sua.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_sua.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.btn_sua.Location = new System.Drawing.Point(139, 293);
             this.btn_sua.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -107,6 +111,7 @@
             // 
             // btn_them
             // 
+            this.btn_them.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_them.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.btn_them.Location = new System.Drawing.Point(18, 293);
             this.btn_them.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -172,6 +177,7 @@
             this.datagridview.Dock = System.Windows.Forms.DockStyle.Fill;
             this.datagridview.Location = new System.Drawing.Point(3, 19);
             this.datagridview.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.datagridview.MultiSelect = false;
             this.datagridview.Name = "datagridview";
             this.datagridview.ReadOnly = true;
             this.datagridview.RowHeadersWidth = 51;
@@ -240,12 +246,12 @@
             // groupBox1
             // 
             this.groupBox1.AutoSize = true;
+            this.groupBox1.Controls.Add(this.txt_toidasv);
             this.groupBox1.Controls.Add(this.btn_khoiphuc);
             this.groupBox1.Controls.Add(this.chb_thungrac);
             this.groupBox1.Controls.Add(this.btn_search);
             this.groupBox1.Controls.Add(this.cb_lmh);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.txt_toidasv);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.cb_monhoc);
             this.groupBox1.Controls.Add(this.label2);
@@ -257,6 +263,7 @@
             this.groupBox1.Controls.Add(this.txt_tenlophoc);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(44, 65);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -269,6 +276,8 @@
             // 
             // btn_khoiphuc
             // 
+            this.btn_khoiphuc.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_khoiphuc.Enabled = false;
             this.btn_khoiphuc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.btn_khoiphuc.Location = new System.Drawing.Point(395, 293);
             this.btn_khoiphuc.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -282,6 +291,7 @@
             // chb_thungrac
             // 
             this.chb_thungrac.AutoSize = true;
+            this.chb_thungrac.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chb_thungrac.Location = new System.Drawing.Point(697, 368);
             this.chb_thungrac.Name = "chb_thungrac";
             this.chb_thungrac.Size = new System.Drawing.Size(96, 22);
@@ -292,6 +302,7 @@
             // 
             // btn_search
             // 
+            this.btn_search.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_search.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.btn_search.Location = new System.Drawing.Point(535, 293);
             this.btn_search.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -320,16 +331,6 @@
             this.label4.Size = new System.Drawing.Size(103, 18);
             this.label4.TabIndex = 14;
             this.label4.Text = "Loại môn học:";
-            // 
-            // txt_toidasv
-            // 
-            this.txt_toidasv.Location = new System.Drawing.Point(161, 219);
-            this.txt_toidasv.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txt_toidasv.Multiline = true;
-            this.txt_toidasv.Name = "txt_toidasv";
-            this.txt_toidasv.Size = new System.Drawing.Size(612, 28);
-            this.txt_toidasv.TabIndex = 13;
-            this.txt_toidasv.Text = "40";
             // 
             // label3
             // 
@@ -368,6 +369,18 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "QUẢN LÝ LỚP HỌC";
             // 
+            // txt_toidasv
+            // 
+            this.txt_toidasv.Location = new System.Drawing.Point(162, 222);
+            this.txt_toidasv.Name = "txt_toidasv";
+            this.txt_toidasv.Size = new System.Drawing.Size(612, 24);
+            this.txt_toidasv.TabIndex = 20;
+            this.txt_toidasv.Value = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            // 
             // form_lophoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -382,6 +395,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.datagridview)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_toidasv)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -403,7 +417,6 @@
         private System.Windows.Forms.ComboBox cb_monhoc;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txt_toidasv;
         private System.Windows.Forms.ComboBox cb_lmh;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btn_search;
@@ -415,5 +428,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ti_le_sinh_vien;
         private System.Windows.Forms.Button btn_khoiphuc;
         private System.Windows.Forms.CheckBox chb_thungrac;
+        private System.Windows.Forms.NumericUpDown txt_toidasv;
     }
 }

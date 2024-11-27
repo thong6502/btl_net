@@ -15,6 +15,7 @@ namespace btl_net.View
     public partial class form_qlmonhoc : Form
     {
         Dbconnect db = new Dbconnect();
+        int global_is_xoa = 0;
         public form_qlmonhoc()
         {
             InitializeComponent();
@@ -22,13 +23,14 @@ namespace btl_net.View
         private void TaiDuLieuMonHoc()
         {
             DataTable dt = db.list_monhoc();
-            Luoi_MonHoc.DataSource = dt;
+            DataView dv = new DataView(dt);
+            dv.RowFilter = "is_xoa = " + global_is_xoa;
+            Luoi_MonHoc.DataSource = dv;
         }
         private void Form2_Load(object sender, EventArgs e)
         {
             load_data_cb_phanloai();
             TaiDuLieuMonHoc();
-            vohieuhoa(false);
             reset();
         }
         public void load_data_cb_phanloai()
@@ -58,23 +60,12 @@ namespace btl_net.View
         }
         private void btnThem_Click(object sender, EventArgs e)
         {
-            if (btnThem.Text == "Thêm")
-            {
-                vohieuhoa(true);
-                reset();
-                btnThem.Text = "Lưu";
-                txtTenMonHoc.Focus();
 
-                btnSua.Enabled = false;
-                btnTimKiem.Enabled = false;
-                btnXoa.Enabled = false;
-            }
-            else
-            {
+
                 if (string.IsNullOrWhiteSpace(txtTenMonHoc.Text) ||
                     string.IsNullOrWhiteSpace(txtSoTC.Text) ||
                     string.IsNullOrWhiteSpace(txtSoBuoiHoc.Text) ||
-                    string.IsNullOrWhiteSpace(txtGioiHanNghi.Text)||
+                    string.IsNullOrWhiteSpace(txtGioiHanNghi.Text) ||
                     string.IsNullOrWhiteSpace(cbLoaiMonHoc.Text))
                 {
                     MessageBox.Show("Vui lòng nhập đủ dữ liệu.");
@@ -106,7 +97,7 @@ namespace btl_net.View
                     try
                     {
                         string tenMonHoc = txtTenMonHoc.Text;
-                        int idPhanLoaiMonHoc = Convert.ToInt32(cbLoaiMonHoc.SelectedValue); 
+                        int idPhanLoaiMonHoc = Convert.ToInt32(cbLoaiMonHoc.SelectedValue);
 
                         monhoc_Model mh = new monhoc_Model(0, soTinChi, tongSoBuoiHoc, gioiHanSoBuoiNghi, idPhanLoaiMonHoc, tenMonHoc, false);
                         db.them_monhoc(mh);
@@ -119,12 +110,7 @@ namespace btl_net.View
                     }
                     TaiDuLieuMonHoc();
                     reset();
-                    vohieuhoa(false);
-                    btnThem.Text = "Thêm";
-                    btnSua.Enabled = true;
-                    btnTimKiem.Enabled = true;
-                    btnXoa.Enabled = true;
-                }
+
             }
         }
 
@@ -132,16 +118,8 @@ namespace btl_net.View
         {
             if (txtTenMonHoc.Text != "")
             {
-                if (btnSua.Text == "Sửa")
-                {
-                    vohieuhoa(true);
-                    btnSua.Text = "Cập nhật";
 
-                    btnThem.Enabled = false;
-                    btnTimKiem.Enabled = false;
-                    btnXoa.Enabled = false;
-                }
-                else if (string.IsNullOrWhiteSpace(txtTenMonHoc.Text) ||
+                if (string.IsNullOrWhiteSpace(txtTenMonHoc.Text) ||
                          string.IsNullOrWhiteSpace(txtSoTC.Text) ||
                          string.IsNullOrWhiteSpace(txtSoBuoiHoc.Text) ||
                          string.IsNullOrWhiteSpace(txtGioiHanNghi.Text) ||
@@ -174,7 +152,7 @@ namespace btl_net.View
                 }
                 else
                 {
-                    int idMonHoc = Convert.ToInt32(Luoi_MonHoc.SelectedRows[0].Cells["id_monhoc"].Value); 
+                    int idMonHoc = Convert.ToInt32(Luoi_MonHoc.SelectedRows[0].Cells["id_monhoc"].Value);
                     string tenMonHoc = txtTenMonHoc.Text;
                     int idPhanLoaiMonHoc = Convert.ToInt32(cbLoaiMonHoc.SelectedValue);
 
@@ -184,17 +162,12 @@ namespace btl_net.View
                     MessageBox.Show("Sửa môn học thành công!");
                     TaiDuLieuMonHoc();
                     reset();
-                    vohieuhoa(false);
-                    btnSua.Text = "Sửa";
-                    btnThem.Enabled = true;
-                    btnTimKiem.Enabled = true;
-                    btnXoa.Enabled = true;
                 }
             }
             else
             {
                 MessageBox.Show("Vui lòng chọn người cần sửa!");
-            }               
+            }
         }
 
         private void Luoi_MonHoc_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -216,23 +189,17 @@ namespace btl_net.View
             {
                 if (Luoi_MonHoc.SelectedRows.Count > 0)
                 {
-                    // Hỏi người dùng xác nhận trước khi xóa
-                    if (MessageBox.Show("Bạn có chắc chắn muốn xóa môn học đã chọn?", "Xác nhận xóa", MessageBoxButtons.YesNo) == DialogResult.Yes)
+
+                    foreach (DataGridViewRow row in Luoi_MonHoc.SelectedRows)
                     {
-                        foreach (DataGridViewRow row in Luoi_MonHoc.SelectedRows)
-                        {
-                            int idMonHoc = Convert.ToInt32(row.Cells["id_monhoc"].Value);
+                        int idMonHoc = Convert.ToInt32(row.Cells["id_monhoc"].Value);
 
-                            db.xoa_monhoc(idMonHoc);
-                        }
-
-                        MessageBox.Show("Xóa môn học thành công!");
-                        TaiDuLieuMonHoc();
+                        db.xoa_monhoc(idMonHoc);
                     }
-                }
-                else
-                {
-                    MessageBox.Show("Vui lòng chọn môn học cần xóa.");
+
+                    MessageBox.Show("Xóa môn học thành công!");
+                    TaiDuLieuMonHoc();
+
                 }
             }
             catch (Exception ex)
@@ -246,9 +213,60 @@ namespace btl_net.View
             this.Close();
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
+        private void btn_khoiphuc_Click(object sender, EventArgs e)
+        {
+            if (Luoi_MonHoc.SelectedRows.Count > 0)
+            {
+
+                foreach (DataGridViewRow row in Luoi_MonHoc.SelectedRows)
+                {
+                    int idMonHoc = Convert.ToInt32(row.Cells["id_monhoc"].Value);
+                    db.khoiphuc_monhoc(idMonHoc);
+                }
+
+                MessageBox.Show("Khôi phục môn học thành công!");
+                TaiDuLieuMonHoc();
+            }
+        }
+
+        private void chb_thungrac_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chb_thungrac.Checked)
+            {
+                global_is_xoa = 1;
+                TaiDuLieuMonHoc();
+                btn_khoiphuc.Enabled = true;
+
+                btnThem.Enabled = false;
+                btnSua.Enabled = false;
+                btnXoa.Enabled = false;
+                txtGioiHanNghi.Text = "";
+                txtSoBuoiHoc.Text = "";
+                txtSoTC.Text = "";
+                txtTenMonHoc.Text = "";
+                cbLoaiMonHoc.SelectedIndex = -1;
+            }
+            else
+            {
+                global_is_xoa = 0;
+                TaiDuLieuMonHoc();
+                btn_khoiphuc.Enabled = false;
+                btnThem.Enabled = true;
+                btnSua.Enabled = true;
+                btnXoa.Enabled = true;
+            }
+        }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
         {
 
+            string tenMonHoc = txtTenMonHoc.Text;
+            string PhanLoaiMonHoc = cbLoaiMonHoc.Text;
+
+            DataTable dt = db.search_monhoc(PhanLoaiMonHoc, tenMonHoc);
+            DataView dv = new DataView(dt);
+            dv.RowFilter = "is_xoa = " + global_is_xoa;
+            Luoi_MonHoc.DataSource = dv;
         }
     }
 }

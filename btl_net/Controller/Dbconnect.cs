@@ -202,7 +202,7 @@ namespace btl_net.Controller
             }
             catch (Exception ex)
             {
-                throw;
+                MessageBox.Show("Lỗi truy vấn: " + ex.Message);
             }
             return dt;
         }
@@ -393,7 +393,7 @@ namespace btl_net.Controller
 
                 // Câu lệnh SQL để lấy tất cả dữ liệu từ bảng tbl_monhoc và tên loại môn học từ tbl_phanloai_monhoc
                 string sql = @"
-            SELECT mh.id_monhoc, mh.tenmonhoc, mh.sotc, mh.tongsobh, mh.max_bh_chophep, 
+            SELECT mh.id_monhoc, mh.tenmonhoc, mh.sotc,mh.is_xoa, mh.tongsobh, mh.max_bh_chophep, 
                    mh.id_phanloai_monhoc, pl.loaimh AS LoaiMH
             FROM tbl_monhoc mh
             INNER JOIN tbl_phanloai_monhoc pl ON mh.id_phanloai_monhoc = pl.id_phanloai_monhoc";
@@ -406,12 +406,102 @@ namespace btl_net.Controller
             }
             catch (SqlException ex)
             {
-                Console.Error.WriteLine("Lỗi SQL: " + ex.Message);
+                MessageBox.Show("Lỗi SQL: " + ex.Message);
+                throw;
+            }
+
+            return dt;
+        }
+        public DataTable list_monhoc_by_idloai(int id_phanloai)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                open_csdl();
+
+                string sql = "select tenmonhoc, is_xoa from tbl_monhoc where id_phanloai_monhoc = @id_phanloai";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("id_phanloai", id_phanloai);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+
+                close_csdl();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Lỗi SQL: " + ex.Message);
                 throw;
             }
             catch (Exception ex)
             {
-                Console.Error.WriteLine("Đã xảy ra lỗi: " + ex.Message);
+                MessageBox.Show("Đã xảy ra lỗi: " + ex.Message);
+                throw;
+            }
+
+            return dt;
+        }
+        public DataTable list_monhoc_by_idsv(int id_sv)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                open_csdl();
+
+                string sql = "SELECT kh.kyhoc, lh.tenlophoc, mh.tenmonhoc,gd.xeplichthi ,mh.is_xoa " +
+                             "FROM tbl_sinhvien AS sv " +
+                             "INNER JOIN tbl_ghidanh AS gd ON sv.id_sv = gd.id_sv " +
+                             "INNER JOIN tbl_lophoc AS lh ON gd.id_lophoc = lh.id_lophoc " +
+                             "INNER JOIN tbl_kyhoc AS kh ON lh.id_kyhoc = kh.id_kyhoc " +
+                             "INNER JOIN tbl_monhoc AS mh ON lh.id_monhoc = mh.id_monhoc " +
+                             "WHERE sv.id_sv = @id_sv ";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("id_sv", id_sv);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+
+                close_csdl();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Lỗi SQL: " + ex.Message);
+                throw;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Đã xảy ra lỗi: " + ex.Message);
+                throw;
+            }
+
+            return dt;
+        }
+        public DataTable search_monhoc(string PhanLoaiMonHoc, string tenMonHoc)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                open_csdl();
+
+                // Câu lệnh SQL để lấy tất cả dữ liệu từ bảng tbl_monhoc và tên loại môn học từ tbl_phanloai_monhoc
+                string sql = @"
+            SELECT mh.id_monhoc, mh.tenmonhoc, mh.sotc,mh.is_xoa, mh.tongsobh, mh.max_bh_chophep, 
+                   mh.id_phanloai_monhoc, pl.loaimh AS LoaiMH
+            FROM tbl_monhoc mh
+            INNER JOIN tbl_phanloai_monhoc pl ON mh.id_phanloai_monhoc = pl.id_phanloai_monhoc
+            WHERE mh.tenmonhoc LIKE @tenmonhoc AND  pl.loaimh LIKE @loaimh";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("tenmonhoc", "%" + tenMonHoc + "%");
+                cmd.Parameters.AddWithValue("loaimh", "%" + PhanLoaiMonHoc + "%");
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
+
+                close_csdl();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Lỗi SQL: " + ex.Message);
                 throw;
             }
 
@@ -463,15 +553,15 @@ namespace btl_net.Controller
             try
             {
                 open_csdl();
-                string sql = "select * from tbl_phanloai_monhoc where is_xoa = 0";
+                string sql = "select * from tbl_phanloai_monhoc";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dt);
                 close_csdl();
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                throw;
+                MessageBox.Show("Lỗi truy vấn : " + e.Message);
             }
             return dt;
         }
@@ -506,7 +596,28 @@ namespace btl_net.Controller
             try
             {
                 open_csdl();
-                string sql = "DELETE FROM tbl_monhoc WHERE id_monhoc = @Id_monhoc";
+                string sql = "UPDATE tbl_monhoc SET is_xoa = 1" +
+                    "WHERE id_monhoc = @Id_monhoc ";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@Id_monhoc", id_monhoc);
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Đã có lỗi xảy ra: " + ex.Message);
+            }
+            finally
+            {
+                close_csdl();
+            }
+        }
+        public void khoiphuc_monhoc(int id_monhoc)
+        {
+            try
+            {
+                open_csdl();
+                string sql = "UPDATE tbl_monhoc SET is_xoa = 0" +
+                    "WHERE id_monhoc = @Id_monhoc ";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@Id_monhoc", id_monhoc);
                 cmd.ExecuteNonQuery();
@@ -1021,6 +1132,40 @@ namespace btl_net.Controller
             }
             return dt;
         }
+        public DataTable list_lophoc_by_idsinhvien(int id_sv)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                open_csdl();
+                string sql = "SELECT kh.kyhoc, lh.tenlophoc, lh.is_xoa " +
+                             "FROM tbl_sinhvien AS sv " +
+                             "INNER JOIN tbl_ghidanh AS gd ON sv.id_sv = gd.id_sv " +
+                             "INNER JOIN tbl_lophoc AS lh ON gd.id_lophoc = lh.id_lophoc " +
+                             "INNER JOIN tbl_kyhoc AS kh ON lh.id_kyhoc = kh.id_kyhoc " +
+                             "WHERE sv.id_sv = @id_sv ";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("id_sv", id_sv);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+                
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi truy vấn cơ sở dữ liệu: " + ex.Message);
+            }
+            finally
+            {
+                close_csdl();
+            }
+            return dt;
+        }
         public DataTable search_lophoc(string tenlophoc, string kyhoc, string tenmonhoc)
         {
             DataTable dt = new DataTable();
@@ -1266,8 +1411,10 @@ namespace btl_net.Controller
                     dt2.Columns.Add("diemquamon", typeof(string));
                     dt2.Columns.Add("max_bh_chophep", typeof(string));
                     dt2.Columns.Add("detail", typeof(string));
+                    dt2.Columns.Add("sobuoinghi", typeof(string));
+                    dt2.Columns.Add("diem_tong_ket", typeof(string));
 
-                    if(dt1.Rows.Count <= 0)
+                    if (dt1.Rows.Count <= 0)
                     {
                         MessageBox.Show("Không tồn tại !!!");
                         return dt2;
@@ -1313,6 +1460,7 @@ namespace btl_net.Controller
 
                         row2["kyhoc"] = dt1.Rows[currentIndex]["kyhoc"];
                         row2["tenlophoc"] = dt1.Rows[currentIndex]["tenlophoc"];
+                        row2["sobuoinghi"] = dt1.Rows[currentIndex]["sobuoinghi"];
 
                         if (diem_tong_ket1 > float.Parse(dt1.Rows[currentIndex]["diemquamon"].ToString()) && float.Parse(dt1.Rows[currentIndex]["sobuoinghi"].ToString()) <= float.Parse(dt1.Rows[currentIndex]["max_bh_chophep"].ToString()))
                         {
@@ -1323,8 +1471,8 @@ namespace btl_net.Controller
                         {
                             row2["is_pass"] = 0;
                         }
-
-                        row2["detail"] = $"Điểm tổng kết = {diem_tong_ket1} \nSố buổi nghỉ = {float.Parse(dt1.Rows[currentIndex]["sobuoinghi"].ToString())}";
+                        row2["diem_tong_ket"] = diem_tong_ket1;
+                        row2["detail"] = $"Điểm tổng kết = {diem_tong_ket1}\nSố buổi nghỉ = {float.Parse(dt1.Rows[currentIndex]["sobuoinghi"].ToString())}";
 
                         dt2.Rows.Add(row2);
 

@@ -39,6 +39,7 @@ namespace btl_net.View
             btnsua.Enabled = sua;
             btnxoa.Enabled = xoa;
             btncapnhat.Enabled = capnhat;
+
         }
 
         private void LoadLoaiMonHocData()
@@ -184,34 +185,69 @@ namespace btl_net.View
             ResetForm();
         }
 
-        private void dgv_Loai_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void chb_thungrac_CheckedChanged(object sender, EventArgs e)
         {
-            if (e.RowIndex > 0)
+            if (chb_thungrac.Checked)
+            {
+                localIsChuaxoa = 1;
+                ResetForm();
+            }
+            else
+            {
+                localIsChuaxoa = 0;
+                ResetForm();
+            }
+        }
+
+        private void dgv_Loai_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dgv_Loai.Rows[e.RowIndex];
                 txtloaimh.Text = row.Cells[1].Value.ToString();
-                    
-            }    
-           
-         
-        }
-
-        private void radaxoa_CheckedChanged(object sender, EventArgs e)
-        {
-            localIsChuaxoa = 1;
-            ResetForm();
-        }
-
-        private void rachuaxoa_CheckedChanged(object sender, EventArgs e)
-        {
-            localIsChuaxoa = 0;
-            ResetForm();
-        }
-        private void FormQLMH_Load(object sender, EventArgs e)
-        {
-            
-            rachuaxoa.Checked = true;
+            }
             
         }
+
+        private void btn_lietke_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Kiểm tra nếu không có dòng nào được chọn
+                if (dgv_Loai.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Vui lòng chọn một loại môn học trước.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Lấy dữ liệu từ dòng được chọn
+                string tenloai = dgv_Loai.SelectedRows[0].Cells["loaimh"].Value?.ToString() ?? string.Empty;
+                if (string.IsNullOrEmpty(tenloai))
+                {
+                    MessageBox.Show("Tên loại môn học không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Chuyển đổi id_phanloai
+                if (!int.TryParse(dgv_Loai.SelectedRows[0].Cells["id_phanloai_monhoc"].Value?.ToString(), out int id_phanloai))
+                {
+                    MessageBox.Show("ID phân loại không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Mở form mới với dữ liệu đã lấy
+                Form formLietKe = new form_lkmonhoc_by_loaimh(id_phanloai, tenloai);
+                formLietKe.Show();
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show("Dữ liệu không đầy đủ hoặc không tìm thấy ô dữ liệu.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }
