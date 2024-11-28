@@ -49,7 +49,7 @@
             this.label1.Location = new System.Drawing.Point(236, 29);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(422, 25);
+            this.label1.Size = new System.Drawing.Size(517, 31);
             this.label1.TabIndex = 0;
             this.label1.Text = "THỐNG KÊ SỐ LỚP HỌC CỦA KỲ HỌC";
             // 

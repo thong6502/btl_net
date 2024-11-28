@@ -72,6 +72,8 @@
             this.tenchuyennganh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.diachi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.khoahoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btn_thongkelop = new System.Windows.Forms.Button();
+            this.btn_thongkemon = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Luoi_SV)).BeginInit();
@@ -90,6 +92,8 @@
             // groupBox1
             // 
             this.groupBox1.AutoSize = true;
+            this.groupBox1.Controls.Add(this.btn_thongkelop);
+            this.groupBox1.Controls.Add(this.btn_thongkemon);
             this.groupBox1.Controls.Add(this.btn_khoiphuc);
             this.groupBox1.Controls.Add(this.cb_nganh);
             this.groupBox1.Controls.Add(this.tbtn_conhoc);
@@ -122,7 +126,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(1333, 374);
+            this.groupBox1.Size = new System.Drawing.Size(1344, 401);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin sinh viên";
@@ -130,7 +134,7 @@
             // btn_khoiphuc
             // 
             this.btn_khoiphuc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btn_khoiphuc.Location = new System.Drawing.Point(756, 290);
+            this.btn_khoiphuc.Location = new System.Drawing.Point(625, 280);
             this.btn_khoiphuc.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_khoiphuc.Name = "btn_khoiphuc";
             this.btn_khoiphuc.Size = new System.Drawing.Size(127, 44);
@@ -153,12 +157,12 @@
             this.tbtn_conhoc.AutoSize = true;
             this.tbtn_conhoc.Checked = true;
             this.tbtn_conhoc.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.tbtn_conhoc.Location = new System.Drawing.Point(1148, 330);
+            this.tbtn_conhoc.Location = new System.Drawing.Point(1139, 357);
             this.tbtn_conhoc.Name = "tbtn_conhoc";
-            this.tbtn_conhoc.Size = new System.Drawing.Size(86, 22);
+            this.tbtn_conhoc.Size = new System.Drawing.Size(93, 22);
             this.tbtn_conhoc.TabIndex = 6;
             this.tbtn_conhoc.TabStop = true;
-            this.tbtn_conhoc.Text = "Còn học";
+            this.tbtn_conhoc.Text = "Đang học";
             this.tbtn_conhoc.UseVisualStyleBackColor = true;
             this.tbtn_conhoc.CheckedChanged += new System.EventHandler(this.tbtn_conhoc_CheckedChanged);
             // 
@@ -166,18 +170,18 @@
             // 
             this.tbtn_bohoc.AutoSize = true;
             this.tbtn_bohoc.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.tbtn_bohoc.Location = new System.Drawing.Point(1250, 330);
+            this.tbtn_bohoc.Location = new System.Drawing.Point(1250, 357);
             this.tbtn_bohoc.Name = "tbtn_bohoc";
-            this.tbtn_bohoc.Size = new System.Drawing.Size(77, 22);
+            this.tbtn_bohoc.Size = new System.Drawing.Size(88, 22);
             this.tbtn_bohoc.TabIndex = 5;
-            this.tbtn_bohoc.Text = "Bỏ học";
+            this.tbtn_bohoc.Text = "Nghỉ học";
             this.tbtn_bohoc.UseVisualStyleBackColor = true;
             this.tbtn_bohoc.CheckedChanged += new System.EventHandler(this.tbtn_bohoc_CheckedChanged);
             // 
             // btnThoat
             // 
             this.btnThoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btnThoat.Location = new System.Drawing.Point(934, 290);
+            this.btnThoat.Location = new System.Drawing.Point(1178, 280);
             this.btnThoat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(127, 44);
@@ -189,7 +193,7 @@
             // btnXoa
             // 
             this.btnXoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btnXoa.Location = new System.Drawing.Point(580, 290);
+            this.btnXoa.Location = new System.Drawing.Point(445, 280);
             this.btnXoa.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(127, 44);
@@ -201,7 +205,7 @@
             // btnSua
             // 
             this.btnSua.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btnSua.Location = new System.Drawing.Point(395, 290);
+            this.btnSua.Location = new System.Drawing.Point(260, 280);
             this.btnSua.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(127, 44);
@@ -213,7 +217,7 @@
             // btnThem
             // 
             this.btnThem.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.btnThem.Location = new System.Drawing.Point(208, 290);
+            this.btnThem.Location = new System.Drawing.Point(73, 280);
             this.btnThem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(127, 44);
@@ -401,7 +405,7 @@
             // 
             this.groupBox2.Controls.Add(this.Luoi_SV);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(12, 425);
+            this.groupBox2.Location = new System.Drawing.Point(14, 442);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -432,6 +436,7 @@
             this.Luoi_SV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Luoi_SV.Location = new System.Drawing.Point(3, 19);
             this.Luoi_SV.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Luoi_SV.MultiSelect = false;
             this.Luoi_SV.Name = "Luoi_SV";
             this.Luoi_SV.ReadOnly = true;
             this.Luoi_SV.RowHeadersWidth = 51;
@@ -561,16 +566,41 @@
             this.khoahoc.Name = "khoahoc";
             this.khoahoc.ReadOnly = true;
             // 
-            // form_quanlysinhvien
+            // btn_thongkelop
+            // 
+            this.btn_thongkelop.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.btn_thongkelop.Location = new System.Drawing.Point(813, 280);
+            this.btn_thongkelop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_thongkelop.Name = "btn_thongkelop";
+            this.btn_thongkelop.Size = new System.Drawing.Size(127, 44);
+            this.btn_thongkelop.TabIndex = 10;
+            this.btn_thongkelop.Text = "Thống kê lớp";
+            this.btn_thongkelop.UseVisualStyleBackColor = true;
+            this.btn_thongkelop.Click += new System.EventHandler(this.btn_thongkelop_Click);
+            // 
+            // btn_thongkemon
+            // 
+            this.btn_thongkemon.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.btn_thongkemon.Location = new System.Drawing.Point(991, 280);
+            this.btn_thongkemon.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_thongkemon.Name = "btn_thongkemon";
+            this.btn_thongkemon.Size = new System.Drawing.Size(127, 44);
+            this.btn_thongkemon.TabIndex = 9;
+            this.btn_thongkemon.Text = "Thống kê môn";
+            this.btn_thongkemon.UseVisualStyleBackColor = true;
+            this.btn_thongkemon.Click += new System.EventHandler(this.btn_thongkemon_Click);
+            // 
+            // form_sinhvien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1382, 708);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1360, 714);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "form_quanlysinhvien";
+            this.Name = "form_sinhvien";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý sinh viên";
             this.groupBox1.ResumeLayout(false);
@@ -628,6 +658,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn diachi;
         private System.Windows.Forms.DataGridViewTextBoxColumn khoahoc;
         private System.Windows.Forms.Button btn_khoiphuc;
+        private System.Windows.Forms.Button btn_thongkelop;
+        private System.Windows.Forms.Button btn_thongkemon;
     }
 }
 

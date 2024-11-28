@@ -12,12 +12,12 @@ using System.Windows.Forms;
 
 namespace btl_net.View
 {
-    public partial class Form3 : Form
+    public partial class form_daudiem : Form
     {
         Dbconnect db = new Dbconnect();
         List<int> arr_sua = new List<int>();
         List<int> arr_xoa = new List<int>();
-        public Form3()
+        public form_daudiem()
         {
             InitializeComponent();
         }

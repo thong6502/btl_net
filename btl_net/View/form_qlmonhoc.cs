@@ -15,6 +15,7 @@ namespace btl_net.View
     public partial class form_qlmonhoc : Form
     {
         Dbconnect db = new Dbconnect();
+        int global_is_xoa = 0;
         public form_qlmonhoc()
         {
             InitializeComponent();
@@ -60,12 +61,6 @@ namespace btl_net.View
         }
         private void btnThem_Click(object sender, EventArgs e)
         {
-            if (btnThem.Text == "Thêm")
-            {
-                vohieuhoa(true);
-                reset();
-                btnThem.Text = "Lưu";
-                txtTenMonHoc.Focus();
 
                 btnSua.Enabled = false;
                 btnKhoiPhuc.Enabled = false;
@@ -116,7 +111,7 @@ namespace btl_net.View
                     try
                     {
                         string tenMonHoc = txtTenMonHoc.Text;
-                        int idPhanLoaiMonHoc = Convert.ToInt32(cbLoaiMonHoc.SelectedValue); 
+                        int idPhanLoaiMonHoc = Convert.ToInt32(cbLoaiMonHoc.SelectedValue);
 
                         monhoc_Model mh = new monhoc_Model(0, soTinChi, tongSoBuoiHoc, gioiHanSoBuoiNghi, idPhanLoaiMonHoc, tenMonHoc, false, diemQuaMon);
                         db.them_monhoc(mh);
@@ -142,10 +137,6 @@ namespace btl_net.View
         {
             if (txtTenMonHoc.Text != "")
             {
-                if (btnSua.Text == "Sửa")
-                {
-                    vohieuhoa(true);
-                    btnSua.Text = "Cập nhật";
 
                     btnThem.Enabled = false;
                     btnKhoiPhuc.Enabled = false;
@@ -192,7 +183,7 @@ namespace btl_net.View
                 }
                 else
                 {
-                    int idMonHoc = Convert.ToInt32(Luoi_MonHoc.SelectedRows[0].Cells["id_monhoc"].Value); 
+                    int idMonHoc = Convert.ToInt32(Luoi_MonHoc.SelectedRows[0].Cells["id_monhoc"].Value);
                     string tenMonHoc = txtTenMonHoc.Text;
                     int idPhanLoaiMonHoc = Convert.ToInt32(cbLoaiMonHoc.SelectedValue);
 
@@ -212,7 +203,7 @@ namespace btl_net.View
             else
             {
                 MessageBox.Show("Vui lòng chọn người cần sửa!");
-            }               
+            }
         }
 
         private void Luoi_MonHoc_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -291,16 +282,28 @@ namespace btl_net.View
                 string.IsNullOrWhiteSpace(cbLoaiMonHoc.Text) ||
                 string.IsNullOrWhiteSpace(txtDiemQuaMon.Text))
             {
-                MessageBox.Show("Vui lòng chọn môn học cần khôi phục.");
+                MessageBox.Show("Đã có lỗi xảy ra: " + ex.Message);
+            }
+        }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnThongKe_Click(object sender, EventArgs e)
+        {
+            string tenMonHoc = txtTenMonHoc.Text;
+            if (string.IsNullOrEmpty(tenMonHoc))
+            {
+                MessageBox.Show("Vui lòng chọn môn học trước khi thống kê!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            int id_monhoc = (int)Luoi_MonHoc.CurrentRow.Cells["id_monhoc"].Value;
-            db.khoi_phuc_monhoc(id_monhoc);
-            TaiDuLieuMonHoc(true);
-            MessageBox.Show("Khôi phục môn học thành công.");
+            // Mở form thống kê và truyền dữ liệu
+            form_tkloptheomon thongKeForm = new form_tkloptheomon(tenMonHoc);
+            thongKeForm.Show();
         }
-
         private void btnThongKe_Click(object sender, EventArgs e)
         {
             string tenMonHoc = txtTenMonHoc.Text;

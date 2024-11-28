@@ -1,5 +1,6 @@
 ﻿using btl_net.Controller;
 using btl_net.Model;
+using btl_net.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -214,6 +215,7 @@ namespace btl_net
                         string success = db.xoa_sinhvien(id_sv);
 
                         if (!success.Equals("success"))
+
                         {
                             MessageBox.Show($"Lỗi khi xóa sinh viên có mã sinh viên {id_sv}: {success}");
                         }
@@ -261,6 +263,72 @@ namespace btl_net
         private void btnThoat_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btn_thongkelop_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Kiểm tra nếu không có dòng nào được chọn
+                if (Luoi_SV.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Vui lòng chọn một sinh viên trước.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Lấy giá trị từ các cột của dòng được chọn
+                int id_sv = int.Parse(Luoi_SV.SelectedRows[0].Cells["id_sv"].Value.ToString());
+                string name_sv = Luoi_SV.SelectedRows[0].Cells["hoten"].Value.ToString();
+
+                // Tạo form mới với dữ liệu đã lấy
+                Form formThongKe = new form_lklophoc_by_sinhvien(id_sv, name_sv);
+                formThongKe.Show();
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show("Dữ liệu không hợp lệ. Vui lòng kiểm tra lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show("Không tìm thấy dữ liệu trong ô được chọn.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn_thongkemon_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Kiểm tra nếu không có dòng nào được chọn
+                if (Luoi_SV.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Vui lòng chọn một sinh viên trước.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Lấy giá trị từ các cột của dòng được chọn
+                int id_sv = int.Parse(Luoi_SV.SelectedRows[0].Cells["id_sv"].Value.ToString());
+                string name_sv = Luoi_SV.SelectedRows[0].Cells["hoten"].Value.ToString();
+
+                // Tạo form mới với dữ liệu đã lấy
+                Form formThongKe = new form_lkmonhoc_by_sinhvien(id_sv, name_sv);
+                formThongKe.Show();
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show("Dữ liệu không hợp lệ. Vui lòng kiểm tra lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show("Không tìm thấy dữ liệu trong ô được chọn.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
