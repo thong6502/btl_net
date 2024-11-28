@@ -56,6 +56,12 @@
     <Compile Include="Model\monhoc_Model.cs" />
     <Compile Include="Model\phanloaimonhoc_Model.cs" />
     <Compile Include="Model\sinhvien_Model.cs" />
+    <Compile Include="View\Form6.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Form6.Designer.cs">
+      <DependentUpon>Form6.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\FormThongKeLHKH.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +79,18 @@
     </Compile>
     <Compile Include="View\form_lophoc.Designer.cs">
       <DependentUpon>form_lophoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\form_luudiem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\form_luudiem.Designer.cs">
+      <DependentUpon>form_luudiem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\form_qlnhapdiem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\form_qlnhapdiem.Designer.cs">
+      <DependentUpon>form_qlnhapdiem.cs</DependentUpon>
     </Compile>
     <Compile Include="View\form_sinhvien.cs">
       <SubType>Form</SubType>
@@ -118,17 +136,23 @@
     <Compile Include="View\FormQLMH.Designer.cs">
       <DependentUpon>FormQLMH.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\form_chuyennganh.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\form_chuyennganh.Designer.cs">
-      <DependentUpon>form_chuyennganh.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\form_thongke.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\form_thongke.Designer.cs">
       <DependentUpon>form_thongke.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\form_thongkeSVNH.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\form_thongkeSVNH.Designer.cs">
+      <DependentUpon>form_thongkeSVNH.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\form_tkloptheomon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\form_tkloptheomon.Designer.cs">
+      <DependentUpon>form_tkloptheomon.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -139,6 +163,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\Form6.resx">
+      <DependentUpon>Form6.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\FormThongKeLHKH.resx">
       <DependentUpon>FormThongKeLHKH.cs</DependentUpon>
     </EmbeddedResource>
@@ -147,6 +174,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\form_lophoc.resx">
       <DependentUpon>form_lophoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\form_luudiem.resx">
+      <DependentUpon>form_luudiem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\form_qlnhapdiem.resx">
+      <DependentUpon>form_qlnhapdiem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\form_sinhvien.resx">
       <DependentUpon>form_sinhvien.cs</DependentUpon>
@@ -169,11 +202,14 @@
     <EmbeddedResource Include="View\FormQLMH.resx">
       <DependentUpon>FormQLMH.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\form_chuyennganh.resx">
-      <DependentUpon>form_chuyennganh.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\form_thongke.resx">
       <DependentUpon>form_thongke.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\form_thongkeSVNH.resx">
+      <DependentUpon>form_thongkeSVNH.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\form_tkloptheomon.resx">
+      <DependentUpon>form_tkloptheomon.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

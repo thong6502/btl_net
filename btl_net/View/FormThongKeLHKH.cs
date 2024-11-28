@@ -19,8 +19,7 @@ namespace btl_net.View
         {
             InitializeComponent();
             this.tenHocKy = tenHocKy;
-            txtTenHocKy.Text = tenHocKy;
-            TaiDuLieuThongKeLopHoc();
+            
         }
         private void TaiDuLieuThongKeLopHoc()
         {
@@ -34,6 +33,12 @@ namespace btl_net.View
             {
                 MessageBox.Show("Không thể tải dữ liệu lớp học.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void FormThongKeLHKH_Load(object sender, EventArgs e)
+        {
+            txtTenHocKy.Text = tenHocKy;
+            TaiDuLieuThongKeLopHoc();
         }
     }
 }

@@ -17,7 +17,7 @@ namespace btl_net
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormHocKy());
+            Application.Run(new form_qlmonhoc());
         }
     }
 }

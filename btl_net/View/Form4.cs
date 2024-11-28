@@ -133,5 +133,19 @@ namespace btl_net.View
             MessageBox.Show("Khôi phục chuyên ngành thành công.");
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string tenChuyenNganh = txtTenChuyenNganh.Text;
+            if (string.IsNullOrEmpty(tenChuyenNganh))
+            {
+                MessageBox.Show("Vui lòng chọn chuyên ngành trước khi thống kê!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Mở form thống kê và truyền dữ liệu
+            form_thongkeSVNH thongKeForm = new form_thongkeSVNH(tenChuyenNganh);
+            thongKeForm.Show();
+        }
     }
 }
